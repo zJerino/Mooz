@@ -1,10 +1,14 @@
-# ParticlesJS Module
+# Mooz Template
 
 #### Installation:
 
-- Upload the contents of the **upload** directory straight into your NamelessMC installation's directory
-- Activate the module in the StaffCP -> Modules tab
-- And Ready
+- Upload all the contents of "upload" directory to the root directory of your NamelessMC installation.
+- Then login to your staff panel, and head over to templates section and click "Install" button.
+
+#### Personalize:
+
+- Log in to your staff panel, go to the templates section and click the "make default" button which is among the template options.
+- And you have already entered the personalization section where you can edit some template functions
 
 #### Contact me:
 
