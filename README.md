@@ -12,6 +12,6 @@
 
 #### Contact me:
 
-- Discord: [Discord Server](https://discord.gg/asYPMe2)
+- Discord: [Discord Server](https://discord.gg/uwGJpv7)
 - Website: [LaboratorioMC](https://zBaneado.laboratoriomc.com.ve)
 - Mail: [Gmail](mailto://zJerino@gmail.com)
