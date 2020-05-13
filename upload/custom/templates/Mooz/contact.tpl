@@ -5,7 +5,7 @@
     <div class="card card-news">
         <div class="card-header">
             <span class="card-title">
-                
+                {$TITLE}
             </span>
         </div>
         <div class="card-body">

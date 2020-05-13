@@ -17,7 +17,7 @@
 body {
     background-color: var(--body);
     font-family: var(--mz-font-family);
-    font-size: 12px;
+    font-size: 0.9rem;
 }
 @media (max-width: 976px) {
 	body {
@@ -80,9 +80,9 @@ a.normal:hover, a.normal:focus{
     background-color: rgba(67, 67, 67, 0.25);
 }
 .encima {
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 5px;
+    padding: 4px 5px;
+    margin: 0;
+    font-size: 14px;
     transition: .40s
 }
 .profile-banner {
@@ -475,4 +475,11 @@ figure:before {
     padding-right: 10px;
     border-radius: 10px;
     box-shadow: 0px 5px 5px 0px #ccc;
+}
+#quitadordepm {
+    padding: 0;
+    margin: 0;
+}
+img.emoji {
+    width: 1.2rem;
 }

@@ -5,32 +5,29 @@
 		            {if isset($item.items)}
                     {if ($name == "alerts") || ($name == "pms")}  
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nada" id="button-{$name}" data-toggle="dropdown" aria-expanded="false">
-                                {$item.icon}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-header">{$item.title}</a>
-                                <div id="list-{$name}">
-                                    <a class="dropdown-item">{$LOADING}</a>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{$item.link}">{$item.meta}</a>
+                            <div class="nav-link nada" id="button-{$name}" data-variation="mini" data-toggle="popup">{$item.icon}</div>
+                            <div class="ui popup">
+                              <a class="item-dropdown">{$item.title}</a>
+                              <div id="list-{$name}">
+                                  <a class="dropdown-item">{$LOADING}</a>
+                              </div>
+                              <a class="dropdown-item" href="{$item.link}">{$item.meta}</a>
                             </div>
                         </li>
               {elseif ($name == "account")}
-                    <li class="nav-item  ml-auto">
-                        <a class="nav-link dropdown-toggle" id="button-{$name}" role="button" data-toggle="dropdown" data-trigger="hover" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user"></i> {$LOGGED_IN_USER.username}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-header">{$item.title}</a>
-                            {foreach from=$item.items item=dropdown}
-                                {if isset($dropdown.seperator)}
+                      <li class="nav-item  ml-auto">
+                        <div class="nav-link" id="button-{$name}" data-variation="mini" data-toggle="popup"><i class="fa fa-user"></i> {$LOGGED_IN_USER.username}</div>
+                        <div class="ui popup">
+                          <a class="item-dropdown">{$item.title}</a>
+                          <div id="awaslokas">
+                                {foreach from=$item.items item=dropdown}
+                                  {if isset($dropdown.seperator)}
                                     <div class="dropdown-divider"></div>
-                                {else}
-				                    <a class="dropdown-item" href="{$dropdown.link}" target="{$dropdown.target}">{$dropdown.icon} {$dropdown.title}</a>
-				                {/if}
-				    {/foreach}
+                                  {else}
+				                            <a class="dropdown-item" href="{$dropdown.link}" target="{$dropdown.target}">{$dropdown.icon} {$dropdown.title}</a>
+				                          {/if}
+				                        {/foreach}
+                          </div>
                         </div>
                     </li>
               {/if}
@@ -57,16 +54,13 @@
         <a class="navbar-toggler" data-target="#sidenav" data-toggle="navdrawer"><i class="material-icons">reorder</i></a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
                 {foreach from=$NAV_LINKS key=name item=item}
                     {if isset($item.items)}
-                        <div class="dropdown">
-                          <a class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {$item.icon} {$item.title}
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-header">{$item.title}</a>
-                              <div class="dropdown-divider"></div>
+                      <div class="nav-item nav-link dropdown-toggle"  data-variation="mini" data-toggle="popup">{$item.title}</div>
+                        <div class="ui popup">
+                          <a class="item-dropdown">{$item.title}</a>
+                          <div id="awaslokas">
                               {foreach from=$item.items item=dropdown}
                                 {if isset($dropdown.seperator)}
                                   <div class="dropdown-divider"></div>
@@ -104,22 +98,20 @@
     <nav class="navdrawer-nav">
         {foreach from=$NAV_LINKS key=name item=item}
             {if isset($item.items)}
-                <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {$item.icon} {$item.title}
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-header">{$item.title}</a>
-                      <div class="dropdown-divider"></div>
-                      {foreach from=$item.items item=dropdown}
-                        {if isset($dropdown.seperator)}
-                          <div class="dropdown-divider"></div>
-                        {else}
-                          <a class="dropdown-item" href="{$dropdown.link}" target="{$dropdown.target}">{$dropdown.icon} {$dropdown.title}</a>
-                        {/if}
-                      {/foreach}
-                  </div>
-                </div>
+              <li class="nav-item {if isset($item.active)}active{/if}">
+                <a class="nav-link" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{$item.icon} {$item.title}</a>
+              </li> 
+              <div class="collapse" id="collapseExample">
+                {foreach from=$item.items item=dropdown}
+                  {if isset($dropdown.seperator)}
+                    <hr>
+                  {else}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{$dropdown.link}" target="{$dropdown.target}">{$dropdown.icon} {$dropdown.title}</a>
+                    </li>
+                  {/if}
+                {/foreach}
+              </div>
             {else}
                 <li class="nav-item {if isset($item.active)}active{/if}">
                     <a class="nav-link" href="{$item.link}" target="{$item.target}">{$item.icon} {$item.title}</a>
@@ -157,4 +149,12 @@
   		  {$MUST_VALIDATE_ACCOUNT}
   	  </div>
   {/if}
+  {if ($ANUNCIO_ENABLE gte yes)}
+	    <div class="alert alert-primary">
+		    <div class="h4 center">{$ANUNCIO_TITLE}</div>
+		     {$ANUNCIO_DESCRICTION}
+	   </div>
+    {/if}
+    
+    <br />
 </div>

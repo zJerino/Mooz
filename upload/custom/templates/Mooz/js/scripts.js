@@ -1,10 +1,20 @@
 function fixFooter() {
-    var footerHeight = $("#footer").outerHeight() + "px";
+    var footerHeight = $("footer").outerHeight() + "px";
     var wrapperHeight = "calc(100vh - " + footerHeight + ")";
     $("#wrapper").css({'min-height': wrapperHeight});
 }
 $(document).ready(fixFooter);
 $(window).resize(fixFooter);
+
+$('[data-toggle="popup"]').popup({
+    inline     : true,
+    hoverable  : true,
+    position   : 'bottom left',
+    delay: {
+      show: 300,
+      hide: 800
+    }
+  });
 
 $(document).ready(function(){
     $(".mantenimiendoxxd").addClass('d-block').addClass('animated fadeIn slow')

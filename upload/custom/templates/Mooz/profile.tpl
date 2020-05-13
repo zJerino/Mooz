@@ -2,7 +2,7 @@
 {include file='navbar.tpl'}
 
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-md-center">
         <div class="col-12">
             <div class="portada-del-perfil">
                 <div class="portada-del-perfil-img" style="background-image:url('{$BANNER}');">
@@ -12,7 +12,7 @@
                             <div  class="portada-del-perfil-nombre">
                                 <strong {if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</strong>
                                 <br />
-                                <span>{$USER_TITLE}</span>
+                                <span>{if $USER_TITLE|count_characters > 0 }{$USER_TITLE}{else}{$GROUP}{/if}</span>
                                 </div>
                             </span>
                         </div>
@@ -57,7 +57,7 @@
             <br />
             <br />
         </div>
-        <div class="col">
+        <div class="col{if (!count($WIDGETS) &&  !$FRIENDS)}-10{/if}">
             <br />
             {if isset($LOGGED_IN)}
                 {if isset($ERROR)}
@@ -89,38 +89,31 @@
 
 			<div class="card card-news">
 			  <div class="card-header">
-                  <div class="row">
-                      <div class="cube-col-custom001">
-                          <img class="rounded-circle" style="max-height:30px; max-width:30px;" src="{$post.avatar}" />
-                      </div>
-                      <span class="cube-col-custom002" rel="tooltip" data-original-title="{$post.date}">
-                          <a data-poload="{$USER_INFO_URL}{$post.user_id}" data-html="true" data-placement="top" href="{$post.profile}" style="{$post.user_style}">
-                              {$post.nickname}
-                          </a>
-                          <br/>
-                          {$post.date_rough}
-                  </span>
-                      <div class="cube-col-custom003">
-                          <span class="float-md-right">
-                              {if (isset($CAN_MODERATE) && $CAN_MODERATE eq 1) || $post.self eq 1}
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <img class="rounded-circle" style="max-height:30px; max-width:30px;" src="{$post.avatar}" />
+                            <a data-poload="{$USER_INFO_URL}{$post.user_id}" data-html="true" data-placement="top" href="{$post.profile}" style="{$post.user_style}">
+                                <span class="ml-1">{$post.nickname}</span>
+                            </a>
+                        </div>
+                        <div class="col">
+                            {if (isset($CAN_MODERATE) && $CAN_MODERATE eq 1) || $post.self eq 1}
                                 <form action="" method="post" id="delete{$post.id}">
                                     <input type="hidden" name="post_id" value="{$post.id}">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="token" value="{$TOKEN}">
                                 </form>
-                                <div class="dropdown">
-                                    <a id="xddddd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="xddddd">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#editModal{$post.id}">{$EDIT}</a>
-                                        <a class="dropdown-item" onclick="deletePost({$post.id})">{$DELETE}</a>
+                              <div class="ml-auto d-table" id="button-{$name}" data-variation="mini" data-toggle="popup"><i class="fa fa-ellipsis-h"></i></div>
+                                <div class="ui popup">
+                                    <a class="item-dropdown">Menu</a>
+                                    <div id="awaslokas">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#editModal{$post.id}" href="#">{$EDIT}</a>
+                                        <a class="dropdown-item" onclick="deletePost({$post.id})" href="#">{$DELETE}</a>
                                     </div>
-                              </div>
+                                </div>
                             {/if}
-                          </span>
-                      </div>
-                  </div>
+                        </div>
+                    </div>
 			  </div>
 
 			  <div class="card-body">
@@ -130,12 +123,14 @@
 			  </div>
 
 			  <div class="card-footer">
-                  <a {if $post.reactions_link ne "#"}href="{$post.reactions_link}"{else}{/if} {if count($post.reactions.reactions)} data-toggle="tooltip" title="{foreach from=$post.reactions.reactions item=reaction name=name}{$reaction.nickname}{if (!$smarty.foreach.name.last)}, {/if}{/foreach}"{/if}>
-                      <i class="fas fa-thumbs-up"></i> {$post.reactions.count} 
-                  </a>
-                  <a aria-controls="comentarios-de-{$post.id}" aria-expanded="false" data-toggle="collapse" href="#comentarios-de-{$post.id}" id="headingOne">
-                      <i class="fas fa-comments"></i> {$post.replies.count}
-                  </a>
+                <div class="row align-items-center">
+                    <a {if $post.reactions_link ne ""}href="{$post.reactions_link}"{else}{/if} class="col" {if count($post.reactions.reactions)} data-toggle="tooltip" title="{foreach from=$post.reactions.reactions item=reaction name=name}{$reaction.nickname}{if (!$smarty.foreach.name.last)}, {/if}{/foreach}"{/if}>
+                        <i class="fas fa-thumbs-up"></i> {$post.reactions.count} 
+                    </a>
+                    <a aria-controls="comentarios-de-{$post.id}" class="col" aria-expanded="false" data-toggle="collapse" href="#comentarios-de-{$post.id}" id="headingOne">
+                        <i class="fas fa-comments"></i> {$post.replies.count}
+                    </a>
+                </div>
                   
                 <div class="list-group" style="text-align: start" id="accordionOne">
                     <div class="expansion-panel">
@@ -275,6 +270,7 @@
 			<br /><br />
 		  {/if}
         </div>
+        {if isset($FRIENDS) || count($WIDGETS)}
         <div class="col-md-4 col-lg-3">
             {if isset($FRIENDS)}
                 <div class="card card-news" id="widget-friends">
@@ -304,6 +300,7 @@
                 {/foreach}
             {/if}
         </div>
+        {/if}
     </div>
 </div>
 
@@ -358,7 +355,7 @@
     position: absolute;transform: translate3d(-25px, 32px, 106px);" src="{$AVATAR}"></span>
                         <span class="col">
                             <div  class="portada-del-perfil-nombre">
-                                <strong {if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</strong>
+                                <strong {if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}" {/if}>{$NICKNAME}</strong>
                                 <br />
                                 <span>{$USER_TITLE}</span>
                                 </div>

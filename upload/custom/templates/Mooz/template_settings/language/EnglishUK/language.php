@@ -40,7 +40,7 @@ $language = array(
     'WN_Name' => 'Site Name',
     'WD_Name' => 'Web Description',
     //Titulos de las categorias
-    'Principales' => 'IDK',
+    'Principales' => 'General',
     'Contenido' => 'Content',
     'Otrosxd' => 'Others'
 );

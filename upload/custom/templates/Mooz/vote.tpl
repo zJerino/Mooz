@@ -1,38 +1,44 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<h2 class="ui header">{$VOTE_TITLE}</h2>
-
-<div class="ui stackable grid">
-  <div class="ui row">
-    <div class="ui {if count($WIDGETS)}ten wide tablet twelve wide computer{else}sixteen wide{/if} column">
-      <div class="ui segment">
-		{if isset($MESSAGE_ENABLED)}
-		  <div class="ui info message">
-			<div class="content">
-			  {$MESSAGE}
-			</div>
-		  </div>
-		{/if}
-		
-		<div class="ui grid">
-			{foreach from=$SITES item=site}
-			  <div class="eight wide column">
-				<a class="fluid ui small primary button" href="{$site.url}" target="_blank" role="button"> {$site.name}</a>
-			  </div>
-			{/foreach}
+<div class="container">
+	{if !empty($WIDGETS)}
+	<div class="row">
+	  <div class="col-md-9">
+	{/if}
+	<div class="card card-news">
+		<div class="card-header">
+			<span>
+				<ul class="row no-gutters mb-0 px-2">
+					{$TITLE}
+		  		</ul>
+			</span>
 		</div>
+	  <div class="card-body">
+			{if isset($MESSAGE_ENABLED)}
+				<div class="alert alert-info">
+					{$MESSAGE}
+				</div>
+			  {/if}
+			<div class="row no-gutters mb-0 px-2 row-cols-3">
+				{foreach from=$SITES item=site}
+					<div class="col">
+				  		<a class="mx-auto d-table btn btn-primary" href="{$site.url}" target="_blank" role="button"> {$site.name}</a>
+					</div>
+		  		{/foreach}
+			</div>
 	  </div>
 	</div>
-  
-    {if count($WIDGETS)}
-      <div class="ui six wide tablet four wide computer column">
-        {foreach from=$WIDGETS item=widget}
-          {$widget}
-        {/foreach}
-      </div>
-    {/if}
+	{if !empty($WIDGETS)}
+	</div>
+	<div class="col-md-3">
+	{foreach from=$WIDGETS item=widget}
+	  {$widget}<br /><br />
+	{/foreach}
+	</div>
+	</div>
+	{/if}
   </div>
-</div>
+  
 
 {include file='footer.tpl'}

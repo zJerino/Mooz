@@ -8,10 +8,6 @@
         <span class="ml-auto"><i class="fa fa-search"></i></span>
     </ol>
 </nav>
-
-<h2>
-    {$TITLE}
-</h2>
 {if isset($SPAM_INFO)}
 	<div class="alert alert-info">
 		<i class="fa fa-exclamation-circle"></i>{$SPAM_INFO}
@@ -34,28 +30,24 @@
                                     {if !isset($subforum->redirect_confirm)}
                                         <li class="list-group-item encima">
                                             <div class="row">
-                                                <div class="col-1">
+                                                <div class="col-1" id="quitadordepm">
                                                     {if empty($subforum->icon)}
                                                         <i class="fa fa-comments fa-2x"></i>
                                                     {else}
                                                         {$subforum->icon}
                                                     {/if}
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col">
                                                     <b>
                                                         <a class="normal" href="{$subforum->link}">{$subforum->forum_title}</a>
                                                     </b>
+                                                    <p id="quitadordepm">
+                                                        <b>{$subforum->topics}</b> <small> {$TOPICS|capitalize}</small>
+                                                        <b>{$subforum->posts}</b><small>{$POSTS|capitalize}</small>
+                                                    </p>
+
                                                 </div>
-                                                <div class="col">
-                                                    <div class="estadisticasxxdddd">
-                                                        <b>{$subforum->topics}</b>
-                                                        <small>{$TOPICS|capitalize}</small>
-                                                        <br />
-                                                        <b>{$subforum->posts}</b>
-                                                        <small>{$POSTS|capitalize}</small>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 d-none d-sm-none d-md-block">
+                                                <div class="col-4 d-none d-sm-none d-md-block ml-auto">
                                                     {if isset($subforum->last_post)}
                                                         <div class="media">
                                                             <img class="mr-3 rounded-circle" src="{$subforum->last_post->avatar}" style="width: 25px">
@@ -71,7 +63,7 @@
                                                             </div>
                                                         </div>
                                                     {else}
-                                                        <h4 style="padding: 8px 0">{$NO_TOPICS}</h4>
+                                                        <p class="quitadordepm">{$NO_TOPICS}</p>
                                                 {/if}
                                                 </div>
                                                 {*<div class="col d-none d-sm-none d-md-block">

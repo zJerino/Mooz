@@ -2,16 +2,13 @@
     <div class="ms-user centro">
         <div class="ms-avatar ms-large" style="    position: initial;margin: 0;">
             <img class="ms-avatar-img" src="{$AVATAR}" alt="{$USERNAME}">
-            <span class="ms-status ms-success"></span>
         </div>
-        <div>
+        <span>
             <p>
                 <b>{$NICKNAME}</b><br/>
                 <i> {if count($GROUPS)}{foreach from=$GROUPS item=group}{$group}{/foreach}{/if}</i><br/>
             </p>
-        <div class="row">
-            <a class="col-6 btn btn-light" href="{$PROFILE}">{$V_Profile}</a>
-        </div> 
-        </div> 
+            <a class="mx-auto d-table btn btn-light" href="{$PROFILE}">{$V_Profile}</a>
+        </span> 
     </div>
 </div>

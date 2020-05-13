@@ -20,6 +20,7 @@ class Mooz_Template extends TemplateBase {
 			'author' => '<a href="https://Discord.zJerino.tk/" target="_blank">zJerino and Valeehh</a>',
 		);        
 		$template['path'] = (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/' . $template['name'] . '/';
+		$template['assets'] = (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/' . $template['name'] . '/core/assets/';
 		$template['core'] = (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/core/assets/';
 		$site['url'] = URL::build('/');
 		$ROOTURL = (defined('CONFIG_PATH') ? CONFIG_PATH : '');
@@ -32,6 +33,10 @@ class Mooz_Template extends TemplateBase {
         
 		$this->addCSSFiles(array(
 			$template['path'] . 'css/toastr.min.css' => array(),
+			$template['assets'] . 'semantic-ui/item.min.css' => array(),
+			$template['assets'] . 'semantic-ui/popup.min.css' => array(),
+			$template['assets'] . 'semantic-ui/transition.min.css' => array(),
+			$template['assets'] . 'semantic-ui/menu.min.css' => array(),
 		));
         
 		$this->addJSFiles(array(
@@ -41,6 +46,8 @@ class Mooz_Template extends TemplateBase {
 			$template['path'] . 'js/bootstrap.min.js' => array(),
 			$template['path'] . 'js/material.js' => array(),
 			$template['path'] . 'js/toastr.min.js' => array(),
+			$template['assets'] . 'semantic-ui/popup.min.js' => array(),
+			$template['assets'] . 'semantic-ui/transition.min.js' => array(),
 		));
         
         $smarty->assign('TEMPLATE', $template);
@@ -107,16 +114,16 @@ class Mooz_Template extends TemplateBase {
         $speedcss = array(
             '<link rel="stylesheet" href="'.$template['path'].'css/all.min.css" async>',
             '<link rel="stylesheet" href="'.$template['path'].'css/material.css" async>',
-            '<link rel="stylesheet" href="'.$template['path'].'css/failsafe.css" async>', // Failsafe no es util
+            //'<link rel="stylesheet" href="'.$template['path'].'css/failsafe.css" async>', // Failsafe no es util
         );
         $speedjs = array(
-            // Failsafe no es util
-            '<script type="text/javascript" async src="'.$template['path'].'js/failsafe.js"></script>',
+			'<script  src="https://twemoji.maxcdn.com/v/13.0.0/twemoji.min.js" integrity="sha384-avLpk7eChiSgpDvwa4N7hvg9vj6V9sfFmGHurVkPOlWUalASzcO3d2x3qcbQqhsH" crossorigin="anonymous"></script>',
+			'<script  type="text/javascript">twemoji.parse(document.body);</script>',
+			//'<script type="text/javascript" async src="'.$template['path'].'js/failsafe.js"></script>',
         );
         $smarty->assign('fspeedjs', $speedjs);
         $smarty->assign('fspeedcss', $speedcss);
         
-        include (ROOT_PATH . '/custom/templates/Mooz/Config/Variables.php');
 	}
 	
 	public function onPageLoad() {
@@ -203,6 +210,7 @@ class Mooz_Template extends TemplateBase {
 		
 		$this->addJSFiles(array(
 			$this->_template['path'] . 'js/core/core.js' => array(),
+			$this->_template['path'] . 'js/core/react.core.js' => array(),
 			$this->_template['path'] . 'js/core/user.js' => array(),
 			$this->_template['path'] . 'js/core/pages.js' => array(),
 			$this->_template['path'] . 'js/scripts.js' => array(),

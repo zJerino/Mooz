@@ -1,49 +1,49 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<h2 class="ui header">
-  {$REGISTER}
-</h2>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form role="form" action="" method="post">
+                <h2>{$REGISTER}</h2>
 
-{if count($ERRORS)}
-  <div class="ui error icon message">
-    <i class="x icon"></i>
-    <div class="content">
-      <div class="header">Error</div>
-      <ul class="list">
-        {foreach from=$ERRORS item=error}
-          <li>{$error}</li>
-        {/foreach}
-        </ul>
-    </div>
-  </div>
-{/if}
+                {if isset($ERRORS)}
+                    <div class="alert alert-danger" role="alert">
+                        {foreach from=$ERRORS item=item name=err}
+                            {$item}
+                            {if not $smarty.foreach.err.last}<br/>{/if}
+                        {/foreach}
+                    </div>
+                {/if}
 
-<div class="ui padded segment" id="complete-signup">
-  <div class="ui stackable grid">
-    <div class="ui centered row">
-      <div class="ui sixteen wide tablet ten wide computer column">
-        <form class="ui form" action="" method="post" id="form-complete-signup">
-          <div class="field">
-            <label for="inputPassword">{$PASSWORD}</label>
-            <input type="password" name="password" id="inputPassword" placeholder="{$PASSWORD}" autocomplete="off" tabindex="1">
-          </div>
-          <div class="field">
-            <label for="inputPasswordAgain">{$CONFIRM_PASSWORD}</label>
-            <input type="password" name="password_again" id="inputPasswordAgain" placeholder="{$CONFIRM_PASSWORD}" autocomplete="off" tabindex="2">
-          </div>
-          <div class="inline field">
-            <div class="ui checkbox">
-              <input type="checkbox" name="remember" id="remember" value="1" tabindex="3">
-              <label>{$REMEMBER_ME}</label>
-            </div>
-          </div>
-          <input type="hidden" name="token" value="{$TOKEN}">
-          <input type="submit" class="ui primary button" value="{$REGISTER}" tabindex="4">
-        </form>
-      </div>
+                <div class="form-group">
+                    <label for="inputPassword">{$PASSWORD}</label>
+                    <input type="password" class="form-control" name="password" id="inputPassword" autocomplete="off"
+                           placeholder="{$PASSWORD}" tabindex="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPasswordAgain">{$CONFIRM_PASSWORD}</label>
+                    <input type="password" class="form-control" name="password_again" id="inputPasswordAgain"
+                           autocomplete="off" placeholder="{$CONFIRM_PASSWORD}" tabindex="2">
+                </div>
+
+                <hr />
+                {$AGREE_TO_TERMS}
+                <br />
+                <span class="button-checkbox">
+				  <button type="button" class="btn" data-color="info" tabindex="7"> {$I_AGREE}</button>
+				  <input type="checkbox" name="t_and_c" id="t_and_c" style="display:none;" value="1">
+				</span>
+                <br /><br />
+
+                <div class="form-group">
+                    <input type="hidden" name="token" value="{$TOKEN}">
+                    <input type="submit" class="btn btn-primary" value="{$REGISTER}">
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 {include file='footer.tpl'}

@@ -29,7 +29,3 @@ $(function() {
         $('#Page_load2').text(loadingTime);
     }
 });
-
-function funcion001() {
-    toastr.success("UwU")
-}

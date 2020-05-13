@@ -179,20 +179,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-header" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <a class="btn btn-primary collapsed c-dark" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            {$Otrosxd}
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                  <div class="card-body">
-                                      <div class="container">
-                                          <h1>Proximamente mas</h1>
-                                      </div>
-                                  </div>
-                                </div>
                             </div>
                         </div>
                     </div>

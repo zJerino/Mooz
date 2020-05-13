@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-3 d-none d-sm-none d-md-block" id="post-sidebar">
                                     <div class="centro">
-                                        <img class="img" src="{$reply.avatar}" alt="{$reply.username}" />
+                                        <img src="{$reply.avatar}" class="rounded-circle img" alt="{$reply.username}" />
                                         <br />
                                         <a href="{$reply.profile}" style="{$reply.user_style}">{$reply.username}</a>
                                         {if isset($reply.user_title)}
@@ -61,7 +61,7 @@
                                         <div class="container-fluid" style="margin-bottom: 6px;">
                                             <span>
                                                 <img class="img" src="{$reply.avatar}" alt="{$reply.username}" /> 
-                                                <a href="{$reply.profile}" style="{$reply.user_style}">{$reply.username}</a>
+                                                <a href="{$reply.profile}" style="{$reply.user_style}"> &nbsp; {$reply.username}</a>
                                             </span>
                                             <span data-toggle="tooltip" data-html="true" title="{$item.time_ago}">
                                                 <i class="fa fa-clock"></i> 

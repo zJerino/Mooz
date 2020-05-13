@@ -2,14 +2,7 @@
 {include file='navbar.tpl'}
 <div class="container">
     
-    {if ($ANUNCIO_ENABLE gte yes)}
-	    <div class="alert alert-primary">
-		    <div class="h4 center">{$ANUNCIO_TITLE}</div>
-		     {$ANUNCIO_DESCRICTION}
-	   </div>
-    {/if}
     
-    <br />
     {if isset($HOME_SESSION_FLASH)}
         <span class="alert alert-success">
             <i class="fa fa-check-circle fa-1x"></i> <b>{$SUCCESS_TITLE}</b>
@@ -25,8 +18,9 @@
             {$HOME_SESSION_ERROR_FLASH}
         </span>
     {/if}    
+    
     <div class="row justify-content-center">
-        <div class="col">
+        <div class="col-9">
             {if count($NEWS)}
                 {foreach from=$NEWS item=item}
                     <div class="card card-news">
@@ -67,13 +61,13 @@
                 {/foreach}
             {/if}
         </div>
-        <div class="col-md-4 col-lg-3">
-            {if count($WIDGETS)}
+        {if count($WIDGETS)}
+            <div class="col-md-4 col-lg-3">
                 {foreach from=$WIDGETS item=widget}
                     {$widget}
                 {/foreach}
-            {/if}
-        </div>
+            </div>
+        {/if}
     </div>
 </div>
 {include file='footer.tpl'}

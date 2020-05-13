@@ -17,11 +17,11 @@
     <div class="modal-backdrop fade show"></div>
 {/if}
 
+<div id="root"></div>
   
     {if isset($NEW_UPDATE) && ($NEW_UPDATE_URGENT != true)}
         <script src="{$TEMPLATE.path}/js/core/update.js"></script>
     {/if}
-
 <style>
 .ir-arriba {
     display: none;
@@ -38,15 +38,6 @@
 }
 </style>
 <span class="ir-arriba fa fa-angle-up fa-fw"></span>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 </main>
         <footer>
             <div class="footer">
@@ -114,88 +105,52 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer>     
+        {* Soon *}
+        {*
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>  
+        *}
         {foreach from=$TEMPLATE_JS item=script}
             {$script}
         {/foreach}
-{foreach from=$fspeedjs item=scripts}
+        {foreach from=$fspeedjs item=scripts}
             {$scripts}
         {/foreach}
+        
+        <script type="text/babel" src="{$TEMPLATE.path}js/core/react.core.js"></script>
         {if isset($MAINTENANCE_ENABLED)}
             <script type="text/javascript">toastr.error(Mantenimiento)</script>
         {/if}
-
-    {if ($CCM_BETA == block)}
-            <script src="{$TEMPLATE.path}config/others/context-menu.min.js"></script>
-            <script src="{$TEMPLATE.path}js/jquery-ui.min.js"></script>
-                <script  type="text/javascript">
-                    var myMenu = [{
-            // This example uses Font Awesome Iconic Font.
-            icon: 'fa fa-home',
-            // Menu Label
-            label: '<a href="{$SITE_HOME}"> {$SITE_NAME}</a>',
-            // Callback
-            action: function(option, contextMenuIndex, optionIndex) {},
-            // An array of submenu objects
-            submenu: null,
-            // is disabled?
-            disabled: false   //Disabled status of the option
-          },
-          
-         {
-            icon: 'fa fa-link',
-            label: '{$QUICK_LINK}',
-            action: function(option, contextMenuIndex, optionIndex) {},
-            submenu: [
-                {foreach from=$FOOTER_NAVIGATION key=name item=item}
-                      {if isset($item.items)}
-                      {else}
-                      {
-                        icon: '{$item.icon}',
-                        label: '<a href="{$item.link}">{$item.title}</a>',
-                        action: function(option, contextMenuIndex, optionIndex) {},
-                        submenu: null,
-                        disabled: false
-                      },
-                      {/if}
-                {/foreach}
-                {
-                    icon: '',
-                    label: '<a href="{$TERMS_LINK}">{$TERMS_TEXT}</a>',
-                    action: function(option, contextMenuIndex, optionIndex) {},
-                    submenu: null,
-                    disabled: false
-                },
-                {
-                    icon: '',
-                    label: '<a href="{$PRIVACY_LINK}">{$PRIVACY_TEXT}</a>',
-                    action: function(option, contextMenuIndex, optionIndex) {},
-                    submenu: null,
-                    disabled: false
-            }],
-             disabled: false
-         },                      
-            {
-            //Menu separator
-            separator: true
-            },
-          {
-            icon: 'fa fa-cogs',
-            label: '<a href="https://zJerino.tk"> En Desarrollo</a>',
-            action: function(option, contextMenuIndex, optionIndex) {},
-            submenu: null,
-            disabled: false
-          }
-        ];
-    {literal}
-        $('body').on('contextmenu', function(e) {
-          e.preventDefault();
-          superCm.createMenu(myMenu, e);
-            animation: `{duration: 250, show: 'fadeIn', hide: 'fadeOut'}`;
-        });
-    {/literal}
-         toastr.success('Listo')
-        </script>
-    {/if}
+        {if ($smarty.const.PAGE == "members")}
+            {literal}
+                <script>
+                    $.extend( true, $.fn.dataTable.defaults, {
+                        "searching": true,
+                        "lengthChange": false,
+                        "info": false,
+                        "ordering": true
+                    });
+	                $(document).ready(function() {
+		                $('#tablaprro').dataTable({
+    			            responsive: true,
+			                language: {
+				                "lengthMenu": "Display _MENU_ records per page",
+				                "zeroRecords": "No results found",
+				                "info": "Showing page _PAGE_ of _PAGES_",
+				                "infoEmpty": "No records available",
+				                "infoFiltered": "(filtered from _MAX_ total records)",
+				                "search": "Search ",
+				                "paginate": {
+					                "next": "Next",
+					                "previous": "Previous"
+				                }
+			                }
+		                });
+	                });
+                </script>
+            {/literal}
+        {/if}
     </body>
 </html>
