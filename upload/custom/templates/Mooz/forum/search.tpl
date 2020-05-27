@@ -1,37 +1,28 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<h2 class="ui header">
-  {$FORUM_SEARCH}
-</h2>
-
-{if isset($ERROR)}
-  <div class="ui error icon message">
-    <i class="error icon"></i>
-    <div class="content">
-      <div class="header">{$ERROR_TITLE}</div>
-      {$ERROR}
-    </div>
-  </div>
+<div class="container">
+  {if isset($ERROR)}
+    <span class="alert alert-danger">
+      <b>{$ERROR_TITLE}</b> {$ERROR}
+    </span>
 {/if}
-            
-<div class="ui padded segment" id="forum-search">
-  <div class="ui stackable grid">
-    <div class="ui centered row">
-      <div class="ui sixteen wide tablet ten wide computer column">
-        <form class="ui form" action="" method="post" id="form-forum-search">
-          <div class="field">
-            <label>{$SEARCH}</label>
-            <div class="ui fluid action input">
-              <input type="hidden" name="token" value="{$TOKEN}">
-              <input type="text" name="forum_search" placeholder="{$SEARCH}">
-              <button type="submit" class="ui primary icon button"><i class="search icon"></i></button>
-            </div>
-          </div>
-        </form>
-      </div>
+  <div class="card card-news">
+    <div class="card-header">
+      {$SEARCH}
     </div>
-  </div>
+    <div class="card-body">
+      <form class="ui form" action="" method="post" id="form-forum-search">
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-10">
+            <input type="hidden" name="token" value="{$TOKEN}">
+            <input type="text" class="form-control" name="forum_search" id="Buscar" placeholder="{$SEARCH}">
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
 </div>
-
 {include file='footer.tpl'}

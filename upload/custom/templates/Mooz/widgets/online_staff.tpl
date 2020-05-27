@@ -7,8 +7,8 @@
         {if isset($ONLINE_STAFF_LIST)}
             {foreach from=$ONLINE_STAFF_LIST name=online_staff_arr item=user}
             <li class="media"> 
-                <div class="ms-avatar">                
-                    <img src="{$user.avatar}" alt="{$user.username}" class="avatar-VxgULZ" aria-hidden="true">
+                <div class="ms-avatar">      
+                    <img data-src="{$user.avatar}" data-srcset="{$user.avatar}" alt="{$user.username}" class="avatar-VxgULZ lazy" aria-hidden="true" alt="Loading">
                     <span class="ms-status ms-success"></span>
                 </div>
                 <div class="media-body" style="margin-top: 7px;">

@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
             {include file='user/navigation.tpl'}
         </div>
         <div class="col">
@@ -29,7 +29,7 @@
                                             <a class="normal">
                                                 <div class="row">
                                                     <div class="col-1">
-                                                        <img class="img-mini" src="{$message.last_message_user_avatar}">
+                                                        <img class="img-mini lazy" data-src="{$message.last_message_user_avatar}" data-srcset="{$message.last_message_user_avatar}">
                                                     </div>
                                                     <div class="col-4">
                                                         <b><a href="{$message.link}">{$message.title}</a></b>

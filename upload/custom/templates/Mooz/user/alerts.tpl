@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
             {include file='user/navigation.tpl'}
         </div>
         <div class="col">

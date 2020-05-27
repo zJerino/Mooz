@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
             {include file='user/navigation.tpl'}
             
             <div class="card card-news">
@@ -50,16 +50,31 @@
                             {/if}
                           
                           {foreach from=$MESSAGES item=message}
-                            <span class="chip" id="message" data-toggle="tooltip" title="{$message.message_date_full}">
-                                <img class="chip-img" src="{$message.author_avatar}">
-                                <a href="{$message.author_profile}" style="{$message.author_style}">
-                                    {$message.author_username}
-                                </a>: &ensp;
-                                <p> {$message.content}</p>
-                            </span>
-                          <br />
-                          <br />
+                            {if ($USER_SECTION.account.title === $message.author_username)}
+                                <span class="chip float-right" id="message" data-toggle="tooltip" title="{$message.message_date_full}">
+                                    <p> {$message.content}</p>
+                                </span>
+                                <br>
+                            {else}
+                                <div class="chip" id="message" data-toggle="tooltip" title="{$message.message_date_full}">
+                                    <div style="display: flex;padding: 0px 5px;">
+                                        <span id="AutorDeMensaje">
+                                            <img class="chip-img lazy" data-src="{$message.author_avatar}" style="    margin: 4px 0px;" data-srcset="{$message.author_avatar}">
+                                            <a href="{$message.author_profile}" style="{$message.author_style}">
+                                                {$message.author_username}
+                                            </a>: &ensp;
+                                        </span>
+                                        <p> {$message.content}</p>
+                                    </div>
+                                </div>
+                                <br>
+                            {/if}
+                            <br />
+                            <br />
                           {/foreach}
+                          
+                          <br />
+                          <br />
                           <hr/>
                           <h5><b>{$NEW_REPLY}</b></h5>
                             <form action="" method="post">
@@ -73,6 +88,10 @@
                                 <input type="submit" class="btn btn-primary" name="{$SUBMIT}">
                             </form>
                       </div>
+                      <span class="d-flex">
+                          
+                      {$PAGINATION}
+                      </span>
                   </div>
               </div>
         </div>

@@ -1,10 +1,10 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<div class="container">
+<div class="container" >
 	{if !empty($WIDGETS)}
 	<div class="row">
-	  <div class="col-md-9">
+	  <div class="col-md-9" id="contenido">
 	{/if}
 	<div class="card card-news">
 		<div class="card-header">
@@ -20,10 +20,10 @@
 					{$MESSAGE}
 				</div>
 			  {/if}
-			<div class="row no-gutters mb-0 px-2 row-cols-3">
+			<div class="row">
 				{foreach from=$SITES item=site}
-					<div class="col">
-				  		<a class="mx-auto d-table btn btn-primary" href="{$site.url}" target="_blank" role="button"> {$site.name}</a>
+					<div class="col-md _asduasdi mb-2">
+				  		<a class="btn btn-primary" href="{$site.url}" target="_blank" role="button"> {$site.name}</a>
 					</div>
 		  		{/foreach}
 			</div>

@@ -20,7 +20,7 @@
     {/if}    
     
     <div class="row justify-content-center">
-        <div class="col-9">
+        <div class="col-lg-9">
             {if count($NEWS)}
                 {foreach from=$NEWS item=item}
                     <div class="card card-news">
@@ -33,8 +33,8 @@
                                     <span>
                                         <i class="fa fa-user"></i> <a style="{$item.author_style}" href="{$item.author_url}">{$item.author_name}</a>
                                     </span>
-                                    <span data-toggle="tooltip" data-html="true" title="{$item.time_ago}">
-                                        <i class="fa fa-clock"></i> {$item.date}
+                                    <span data-toggle="tooltip" data-html="true" title="{$item.time_ago} &bull; {$item.date}">
+                                        <i class="fa fa-clock"></i>
                                     </span>
                                     <span class="float-right">
                                         <span>

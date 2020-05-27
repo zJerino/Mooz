@@ -18,34 +18,35 @@
             <div class="card card-news">
                 <div class="card-header">
                     <span class="card-title">
-                        {$FORUM_TITLE}
+                        <b class="d-inline">{$FORUM_TITLE}</b>
+                        {if $NEW_TOPIC_BUTTON}
+                            <span class="float-right">
+                                <a href="{$NEW_TOPIC_BUTTON}">{$NEW_TOPIC}</a>
+                            </span>
+                        {/if}
                     </span>
-                    {if $NEW_TOPIC_BUTTON}
-                        <span class="ml-auto">
-                            <a class="btn btn-outline btn-outline-primary" href="{$NEW_TOPIC_BUTTON}">{$NEW_TOPIC}</a>
-                        </span>
-                    {/if}
                 </div>
                 <div class="card-body">
-                    <div class="container">
                         {if !empty($SUBFORUMS)}
-                              <div class="table-sm table-responsive">
-                                <table class="table table-hover">
-                                  <tr>
-                                    <th colspan="3">{$SUBFORUM_LANGUAGE}</th>
-                                  </tr>
-                                  {foreach from=$SUBFORUMS item=subforum}
-                                  <tr>
-                                    <td>{$subforum.icon} <a href="{$subforum.link}">{$subforum.title}</a></td>
-                                    <td><strong>{$subforum.topics}</strong> {$TOPICS}</td>
-                                  </tr>
-                                  {/foreach}
-                                </table>
-                              </div>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th scope="col">{$SUBFORUM_LANGUAGE}</th>
+                                    <th scope="col">{$TOPIC}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$SUBFORUMS item=subforum}
+                                    <tr>
+                                        <td data-label="Account">{$subforum.icon} <a href="{$subforum.link}">{$subforum.title}</a></td>
+                                        <td data-label="Due Date">{$subforum.topics}</td>
+                                    </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
 		                  {/if}
-                    </div>
                     <div class="table-responsive">
-                    <table class="table table-sm table-hover">
+                    <table>
                         <thead>
                             <tr>
                                 <th scope="col">{$TOPIC}</th>
@@ -53,46 +54,58 @@
                                 <th scope="col">{$LAST_REPLY}</th>
                             </tr>
                         </thead>
-                        <tbody>   
+                        <tbody>
                             {foreach from=$STICKY_DISCUSSIONS item=sticky}
                                 <tr>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
+                                    <td data-label="{$TOPIC}">
+                                        <i class="fas fa-thumbtack"></i> &ThickSpace;
+                                        {$sticky.label} &ThickSpace; <a href="{$sticky.link}">{$sticky.topic_title}</a>
+                                    </td>
+                                    <td data-label="{$STATS}">
+                                        <b>{$sticky.views}</b> <small> {$VIEWS|capitalize}</small> <br>
+                                        <b>{$sticky.posts}</b> <small> {$POSTS|capitalize}</small> <br>
+                                    </td>
+                                    <td data-label="{$LAST_REPLY}">
+                                        <a href="{$sticky.last_reply_link}">
+                                            <img class="img-centre rounded-circle" style="width:25pt;" src="{$sticky.last_reply_avatar}" alt="{$sticky.last_reply_username}" />
+                                        </a>
+                                        <a style="{$sticky.last_reply_style}" href="{$sticky.last_reply_link}" data-toggle="tooltip" data-html="true" title="{$sticky.last_reply} &bull; {$sticky.last_reply_rough}">
+                                            {$sticky.last_reply_username}
+                                        </a>
+
+                                    </td>
                                 </tr>
                             {/foreach}
+                            <hr>
                             {foreach from=$LATEST_DISCUSSIONS item=discussion}
                                 <tr>
-                                    <td>
-                                        {if $discussion.locked == 1}<i class="fa fa-lock"></i> {/if}{$discussion.label}
-                                        <b>
-                                            <a style="color: inherit" href="{$discussion.link}">{$discussion.topic_title}</a>
-                                        </b>
+                                    <td data-label="{$TOPIC}">
+                                        {if $discussion.locked == 1}
+                                            <i class="fa fa-lock"></i> 
+                                        {/if}
+                                        <a href="{$discussion.link}">{$discussion.topic_title}</a>
                                     </td>
-                                    <td>
-                                        <strong>{$discussion.posts}</strong> {$POSTS} <br />
-                                        <strong>{$discussion.views}</strong> {$VIEWS}
+                                    <td data-label="{$STATS}">
+                                        
+                                        <b>{$discussion.views}</b> <small> {$VIEWS|capitalize}</small> <br>
+                                        <b>{$discussion.posts}</b> <small> {$POSTS|capitalize}</small> <br>
                                     </td>
-                                    <td>
-                                        <div class="col">
-                                                    <li class="media">
-                                                        <img class="mr-3 rounded-circle" src="{$discussion.last_reply_avatar}" style="width: 25px">
-                                                        <div class="media-body">
-                                                            <span class="mt-0 mb-1">
-                                                                <a style="{$discussion.last_reply_style}" href="{$discussion.link}">{$discussion.topic_title}</a>
-                                                                <p>
-                                                                    
-                                                                <a data-toggle="tooltip" class="d-none d-sm-none d-md-block" title="{$subforum->last_post->post_date}">{$discussion.last_reply_rough}</a>
-                                                                </p>
-                                                            </span>
-                                                        </div>
-                                                    </li>
-                                            </div>
+                                    <td data-label="{$LAST_REPLY}">
+                                        <a href="{$discussion.last_reply_link}">
+                                            <img class="img-centre rounded-circle" style="width:25pt;" src="{$discussion.last_reply_avatar}" alt="{$discussion.last_reply_username}" />
+                                        </a>
+                                        <a style="{$discussion.last_reply_style}" href="{$discussion.last_reply_link}" data-toggle="tooltip" data-html="true" title="{$discussion.last_reply} &bull; {$discussion.last_reply_rough}">
+                                            {$discussion.last_reply_username}
+                                        </a>
+
                                     </td>
                                 </tr>
                             {/foreach}
                         </tbody>
                     </table>
+                    <span class="centro">
+                        {$PAGINATION}
+                    </span>
                 </div>
                 </div>
             </div>
@@ -106,8 +119,6 @@
         </div>
     </div>
 </div>
-
-{$PAGINATION}
 
 
 {include file='footer.tpl'}

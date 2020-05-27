@@ -6,12 +6,12 @@
             </span>
         </div>
             {if $PACKAGE.image}
-                <img class="card-img-top" src="{$PACKAGE.image}" alt="{$PACKAGE.name}">
+                <img class="lazy card-img-top" data-srcset="{$PACKAGE.image}" data-src="{$PACKAGE.image}" alt="{$PACKAGE.name}">
             {/if}
             {if $PACKAGE.image}
-                <img class="rounded" style="max-height: 150px; max-width: 150px;" src="{$PACKAGE.image}" alt="{$PACKAGE.name}">
+                <img class="lazy rounded" style="max-height: 150px; max-width: 150px;" data-src="{$PACKAGE.image}" data-srcset="{$PACKAGE.image}" alt="{$PACKAGE.name}">
             {else}
-                <img class="rounded" style="max-height: 150px; max-width: 150px;" src="{$TEMPLATE.path}img/empty.png" alt="{$PACKAGE.name}">
+                <img class="lazy rounded" style="max-height: 150px; max-width: 150px;" data-srcset="{$TEMPLATE.path}img/empty.png" data-src="{$TEMPLATE.path}img/empty.png" alt="{$PACKAGE.name}">
             {/if}
             <h5 class="card-title">{$PACKAGE.name}</h5>
             <div class="ui divider"></div>

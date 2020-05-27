@@ -8,43 +8,45 @@
                     {foreach from=$BREADCRUMBS item=breadcrumb}
                     <li class="breadcrumb-item{if isset($breadcrumb.active)} active{/if}">{if !isset($breadcrumb.active)}<a href="{$breadcrumb.link}">{/if}{$breadcrumb.forum_title}{if !isset($breadcrumb.active)}</a>{/if}</li>
                     {/foreach}
-                    <span class="ml-auto">
-                            {if isset($CAN_MODERATE)}
-                                <div class="dropdown">
-                                    <a class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">{$MOD_ACTIONS}</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-header">{$MOD_ACTIONS}</a>
-                                        <a href="{$LOCK_URL}" class="dropdown-item">{$LOCK}</a>
-                                        <a href="{$MERGE_URL}" class="dropdown-item">{$MERGE}</a>
-                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-forumTopicDelete">{$DELETE}</a>
-                                        <a href="{$MOVE_URL}" class="dropdown-item">{$MOVE}</a>
-                                        <a href="{$STICK_URL}" class="dropdown-item">{$STICK}</a>
-                                    </div>
+                    {if isset($CAN_MODERATE)}
+                        <span class="ml-auto">
+                            <div class="btn btn-primary bg-transparent btn-sm dropdown-toggle" id="button-{$name}" data-variation="mini" data-toggle="popup"><i class="fa fa-user"></i> {$MOD_ACTIONS}</div>
+                            <div class="ui popup">
+                                <a class="item-dropdown">{$MOD_ACTIONS}</a>
+                                <div id="awaslokas">
+                                    <a class="dropdown-item" href="{$LOCK_URL}" target="{$dropdown.target}">{$LOCK}</a>
+                                    <a class="dropdown-item" href="{$MERGE_URL}" target="{$dropdown.target}">{$MERGE}</a>
+                                    <a class="dropdown-item" href="{$MOVE_URL}" target="{$dropdown.target}">{$MOVE}</a>
+                                    <a class="dropdown-item" href="{$STICK_URL}" target="{$dropdown.target}">{$STICK}</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#eliminarpost">{$DELETE}</a>
                                 </div>
-                            {/if}
+                            </div>
                         </span>
+                    {/if}
                   </ol>
             </nav>
 
             {foreach from=$REPLIES item=reply}
                 <div class="card card-news" id="topic-post" post-id="{$reply.id}">
-                    <div class="card-header">
-                        <span class="card-title">
-                            <span class="float-right">
-                                {$TOPIC_LABEL}    
+                    {if ($reply.id.first)}
+                        <div class="card-header">
+                            <span class="card-title">
+                                <span class="float-right">
+                                    {$TOPIC_LABEL}    
+                                </span>
+                                <span data-toggle="tooltip" title="{$started_by_val="`$TOPIC_AUTHOR_USERNAME`"}
+                                {$STARTED_BY|replace:'{x}':$started_by_val}">{$TOPIC_TITLE}</span>
                             </span>
-                            <span data-toggle="tooltip" title="{$started_by_val="`$TOPIC_AUTHOR_USERNAME`"}
-                            {$STARTED_BY|replace:'{x}':$started_by_val}">{$TOPIC_TITLE}</span>
-                            
-                            
-                        </span>
-                    </div>
+                        </div>
+                    {/if}
                     <div class="card-body">
-                        <div class="card-publicaciones" id="topic-post" post-id="{$reply.id}">
+                        <div class="card-publicaciones border-0" id="topic-post" post-id="{$reply.id}">
                             <div class="row">
                                 <div class="col-3 d-none d-sm-none d-md-block" id="post-sidebar">
                                     <div class="centro">
-                                        <img src="{$reply.avatar}" class="rounded-circle img" alt="{$reply.username}" />
+                                        <span class="rounded-circle">
+                                            <img data-srcset="{$reply.avatar}" class="rounded-circle {if ($reply.online_now gte 1)}border border-success{/if} lazy" style="border-width: 2px !important;" alt="{$reply.username}" />
+                                        </span>
                                         <br />
                                         <a href="{$reply.profile}" style="{$reply.user_style}">{$reply.username}</a>
                                         {if isset($reply.user_title)}
@@ -64,39 +66,46 @@
                                                 <a href="{$reply.profile}" style="{$reply.user_style}"> &nbsp; {$reply.username}</a>
                                             </span>
                                             <span data-toggle="tooltip" data-html="true" title="{$item.time_ago}">
-                                                <i class="fa fa-clock"></i> 
-                                                <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$reply.post_date}">{$reply.post_date_rough}</span>
+                                                <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$reply.post_date} &bull; {$reply.post_date_rough}"><i class="fa fa-clock"></i></span>
                                                 {if $reply.edited !== null}&bull; <span rel="tooltip" data-toggle="hover" data-original-title="{$reply.edited} &bull; {$reply.edited_full}"> <i class="far fa-clock"></i></span>
                                                 {/if}
                                             </span>
                                             <span class="valeehhta">
                                                 <span>
-                                                    {if isset($reply.buttons.spam)}                                                    
-                                                        <a class="normal" rel="tooltip" data-trigger="hover" title="{$reply.buttons.spam.TEXT}" data-toggle="modal" data-target="#spam{$reply.id}Modal" href="{$reply.buttons.edit.URL}">
+                                                    {if isset($reply.buttons.spam)}
+                                                    <span data-toggle="modal" data-target="#marcar-como-spam-{$reply.id}">                                 
+                                                        <a class="normal m-1" data-toggle="tooltip" data-trigger="hover" title="{$reply.buttons.spam.TEXT}">
                                                             <i class="fas fa-ban" aria-hidden="true"></i>
                                                         </a>
+                                                    </span>
                                                     {/if}
 
                                                     {if isset($reply.buttons.edit)}
-                                                        <a class="normal" data-toggle="tooltip" data-trigger="hover" title="{$reply.buttons.edit.TEXT}" href="{$reply.buttons.edit.URL}">
+                                                    <span>
+                                                        <a class="normal m-1" data-toggle="tooltip" data-trigger="hover" title="{$reply.buttons.edit.TEXT}" href="{$reply.buttons.edit.URL}">
                                                             <i class="fas fa-pen" aria-hidden="true"></i>
                                                         </a>
+                                                    </span>
                                                     {/if}
 
                                                     {if isset($reply.buttons.delete)}
-                                                        <a class="normal" rel="tooltip" data-trigger="hover" data-original-title="{$reply.buttons.delete.TEXT}" data-toggle="modal" data-target="#delete{$reply.id}Modal">
-                                                            <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
-                                                        </a>
+                                                    <span data-toggle="modal" data-target="#eliminar-respuesta-{$reply.id}">
+                                                            <a class="normal m-1" data-toggle="tooltip" data-trigger="hover" data-original-title="{$reply.buttons.delete.TEXT}">
+                                                                <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+                                                            </a>
+                                                        </span>
                                                     {/if}
                                                     
                                                     {if isset($reply.buttons.report)}
-                                                        <a rel="tooltip" class="normal" data-trigger="hover" data-original-title="{$reply.buttons.report.TEXT}" data-toggle="modal" data-target="#report{$reply.id}Modal">
-                                                         <i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
-                                                        </a>
+                                                        <span data-toggle="modal" data-target="#reportar-{$reply.id}">
+                                                            <a rel="tooltip" class="normal m-1" data-trigger="hover" data-toggle="tooltip" data-original-title="{$reply.buttons.report.TEXT}">
+                                                                <i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
+                                                            </a>
+                                                        </span>
                                                     {/if}
 
                                                     {if isset($reply.buttons.quote)}
-                                                        <a class="normal" data-toggle="tooltip" data-trigger="hover" title="{$reply.buttons.quote.TEXT}" onclick="quote({$reply.id});">
+                                                        <a class="normal m-1" data-toggle="tooltip" data-trigger="hover" title="{$reply.buttons.quote.TEXT}" onclick="quote({$reply.id});">
                                                             <i class="fa fa-quote-left fa-fw" aria-hidden="true"></i>
                                                         </a>
                                                     {/if}
@@ -105,168 +114,163 @@
                                         </div>
                                     </header>
                                     
-                                    <div class="col card-deck" id="post-content">
+                                    <div class="col p-2 h-100 pb-3" id="post-content">
                                         <div class="forum_post">{$reply.content}</div>
-                                        <footer class="f-footer" style="min-width: 100%">
-                                            <div class="col" id="reactions" style="min-width: 100%; display: inline-flex">
-                                                {if $reply.user_id !== $USER_ID}
-                                                    {if isset($REACTIONS) && count($REACTIONS)}
-                                                        {foreach from=$REACTIONS item=reaction}
-                                                          <form action="{$REACTIONS_URL}" method="post">
-                                                            <input type="hidden" name="token" value="{$TOKEN}">
-                                                            <input type="hidden" name="reaction" value="{$reaction->id}">
-                                                            <input type="hidden" name="post" value="{$reply.id}">
-                                                            <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-light" rel="tooltip" data-toggle="hover" data-original-title="{$reaction->name}">{$reaction->html}</a>
-                                                          </form>
-                                                        {/foreach}
-                                                      <br />
-                                                    {/if}
-                                                  {/if}
+                                        <div class="mt-auto row w-100 mb-3">
+                                            {if $reply.user_id !== $USER_ID}
+                                                {if isset($REACTIONS) && count($REACTIONS)}
+                                                    <div class="col">
+                                                        <span class="row">
+                                                            {foreach from=$REACTIONS item=reaction}
+                                                                <form action="{$REACTIONS_URL}" class="col-1 m-0 p-2 pt-0 pb-0" method="post">
+                                                                    <input type="hidden" name="token" value="{$TOKEN}">
+                                                                    <input type="hidden" name="reaction" value="{$reaction->id}">
+                                                                    <input type="hidden" name="post" value="{$reply.id}">
+                                                                    <a href="#" onclick="$(this).closest('form').submit();" rel="tooltip" data-toggle="hover" data-original-title="{$reaction->name}">{$reaction->html}</a>
+                                                                </form>
+                                                            {/foreach}
+                                                        </span>
+                                                    </div>
+                                                {/if}
+                                            {/if}
+                                            <div class="col">
                                                 {if count($reply.post_reactions)}
-                                                    <span class="btn btn-light ml-auto"  data-toggle="modal" data-target="#reactions{$reply.id}ModalLabel">
+                                                    <span class="ml-auto d-table" data-toggle="modal" data-target="#Reacciones-{$reply.id}">
                                                         {foreach from=$reply.post_reactions name="reactions" item=reaction}
                                                             {$reaction.html} x {$reaction.count}
-                                                        {if !($smarty.foreach.reactions.last)} | {/if}
+                                                            {if !($smarty.foreach.reactions.last)} | {/if}
                                                         {/foreach}
                                                     </span>
                                                 {/if}
                                             </div>
-                                        </footer>
-                                            
-                                          </div>
+<br />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                 </div>
-            {if count($reply.post_reactions)}
-                    <!-- Reactions modal -->
-                    <div class="modal fade" id="reactions{$reply.id}Modal" tabindex="-1" role="dialog"
-                         aria-labelledby="reactions{$reply.id}ModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="reactions{$reply.id}ModalLabel">{$REACTIONS_TEXT}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    {foreach from=$reply.post_reactions name=reactions item=reaction}
-                                        <strong>{$reaction.html} x {$reaction.count}:</strong>
-                                        <br/>
-                                        {foreach from=$reaction.users item=user}
-                                            <a style="{$user.style}" href="{$user.profile}"><img src="{$user.avatar}"
-                                                                                                 class="rounded"
-                                                                                                 style="height:25px;width:25px;"
-                                                                                                 alt="{$user.username}"/> {$user.nickname}
-                                            </a>
-                                            <br/>
-                                        {/foreach}
-                                        {if !($smarty.foreach.reactions.last)}
-                                            <hr/>
-                                        {/if}
-                                    {/foreach}
-                                </div>
+                {if count($reply.post_reactions)}
+                    <div class="modal fade" id="Reacciones-{$reply.id}" tabindex="-1" role="dialog" aria-labelledby="Reacciones-{$reply.id}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="Reacciones-{$reply.id}">{$REACTIONS_TEXT}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             </div>
-                        </div>
-                    </div>
-                {/if}
-
-                {if isset($reply.buttons.report)}
-                    <!-- Post report modal -->
-                    <div class="modal fade" id="report{$reply.id}Modal" tabindex="-1" role="dialog"
-                         aria-labelledby="report{$reply.id}ModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title"
-                                        id="report{$reply.id}ModalLabel">{$reply.buttons.report.TEXT}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form action="{$reply.buttons.report.URL}" method="post">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="InputReason">{$reply.buttons.report.REPORT_TEXT}</label>
-                                            <textarea class="form-control" id="InputReason" name="reason"></textarea>
+                            <div class="modal-body">
+                                {foreach from=$reply.post_reactions name=reactions item=reaction}
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#ASDASDASDA" role="tab" aria-controls="home" aria-selected="true">{$reaction.html} x {$reaction.count}</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="ASDASDASDA" role="tabpanel" aria-labelledby="home-tab">
+                                            <br>
+                                            {foreach from=$reaction.users item=user}
+                                                <a style="{$user.style}" href="{$user.profile}"><img src="{$user.avatar}" class="rounded" style="height:25px;width:25px;" alt="{$user.username}"/> {$user.nickname}</a>
+                                                <br/>
+                                            {/foreach}
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning"
-                                                data-dismiss="modal">{$CANCEL}</button>
-                                        <input type="hidden" name="post" value="{$reply.id}">
-                                        <input type="hidden" name="topic" value="{$TOPIC_ID}">
-                                        <input type="hidden" name="token" value="{$TOKEN}">
-                                        <input type="submit" class="btn btn-danger"
-                                               value="{$reply.buttons.report.TEXT}">
+                                {/foreach}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {/if}               
+                {if isset($reply.buttons.report)}
+                    <div class="modal fade" id="reportar-{$reply.id}" tabindex="-1" role="dialog" aria-labelledby="reportar-{$reply.id}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{$reply.buttons.report.URL}" method="post" id="form-report-{$reply.id}">
+                                    <div class="ui form">
+                                    <div class="field">
+                                        <label for="InputReason">{$reply.buttons.report.REPORT_TEXT}</label>
+                                        <textarea id="InputReason" name="reason" class="form-control"></textarea>
+                                    </div>
+                                    <input type="hidden" name="post" value="{$reply.id}">
+                                    <input type="hidden" name="topic" value="{$TOPIC_ID}">
+                                    <input type="hidden" name="token" value="{$TOKEN}">
                                     </div>
                                 </form>
                             </div>
+                            <div class="modal-footer">                        
+                                <a class="btn btn-danger">{$CANCEL}</a>
+                                <a class="btn btn-primary text-success" onclick="$('#form-report-{$reply.id}').submit();">{$reply.buttons.report.TEXT}</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {/if}
+                {if isset($reply.buttons.spam)}
+                    <div class="modal fade" id="marcar-como-spam-{$reply.id}" tabindex="-1" role="dialog" aria-labelledby="marcar-como-spam-{$reply.id}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                {$MARK_AS_SPAM}</h5>
+                            <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                            </div>
+                            <div class="modal-body">
+                                {$CONFIRM_SPAM_POST}
+                                <form action="{$reply.buttons.spam.URL}" method="post" id="form-spam-{$reply.id}">
+                                  <input type="hidden" name="post" value="{$reply.id}">
+                                  <input type="hidden" name="token" value="{$TOKEN}">
+                                </form>
+                            </div>
+                            <div class="modal-footer">                        
+                                <a class="btn btn-danger" data-dismiss="modal" aria-label="Close">{$CANCEL}</a>
+                                <a class="btn btn-primary text-success" onclick="$('#form-spam-{$reply.id}').submit();">{$MARK_AS_SPAM}</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                {/if}
+                {if isset($reply.buttons.delete)}
+                    <div class="modal fade" id="eliminar-respuesta-{$reply.id}" tabindex="-1" role="dialog" aria-labelledby="eliminar-respuesta-{$reply.id}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                {$CONFIRM_DELETE_SHORT}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                {$CONFIRM_DELETE_POST}
+                                <form action="{$reply.buttons.delete.URL}" method="post" id="form-delete-{$reply.id}">
+                                  <input type="hidden" name="tid" value="{$TOPIC_ID}">
+                                  <input type="hidden" name="number" value="{$reply.buttons.delete.NUMBER}">
+                                  <input type="hidden" name="pid" value="{$reply.id}">
+                                  <input type="hidden" name="token" value="{$TOKEN}">
+                                </form>
+                            </div>
+                            <div class="modal-footer">                        
+                                <a class="btn btn-danger">{$CANCEL}</a>
+                                <a class="btn btn-primary text-success" onclick="$('#form-delete-{$reply.id}').submit();">{$reply.buttons.delete.TEXT}</a>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 {/if}
 
-                {if isset($CAN_MODERATE)}
-                    <!-- Post spam modal -->
-                    <div class="modal fade" id="spam{$reply.id}Modal" tabindex="-1" role="dialog"
-                         aria-labelledby="spam{$reply.id}ModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="spam{$reply.id}ModalLabel">{$MARK_AS_SPAM}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    {$CONFIRM_SPAM_POST}
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="{$reply.buttons.spam.URL}" method="post">
-                                        <button type="button" class="btn btn-warning"
-                                                data-dismiss="modal">{$CANCEL}</button>
-                                        <input type="hidden" name="post" value="{$reply.id}">
-                                        <input type="hidden" name="token" value="{$TOKEN}">
-                                        <input type="submit" class="btn btn-danger" value="{$MARK_AS_SPAM}">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Post deletion modal -->
-                    <div class="modal fade" id="delete{$reply.id}Modal" tabindex="-1" role="dialog"
-                         aria-labelledby="delete{$reply.id}ModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title"
-                                        id="delete{$reply.id}ModalLabel">{$CONFIRM_DELETE_SHORT}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    {$CONFIRM_DELETE_POST}
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="{$reply.buttons.delete.URL}" method="post">
-                                        <button type="button" class="btn btn-warning"
-                                                data-dismiss="modal">{$CANCEL}</button>
-                                        <input type="hidden" name="tid" value="{$TOPIC_ID}">
-                                        <input type="hidden" name="number" value="{$reply.buttons.delete.NUMBER}">
-                                        <input type="hidden" name="pid" value="{$reply.id}">
-                                        <input type="hidden" name="token" value="{$TOKEN}">
-                                        <input type="submit" class="btn btn-danger"
-                                               value="{$reply.buttons.delete.TEXT}">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {/if}
             {/foreach}
             {if isset($TOPIC_LOCKED_NOTICE)}
                 <div class="alert alert-info">{$TOPIC_LOCKED_NOTICE}</div>
@@ -304,5 +308,27 @@
         </div>
     </div>
 </div>
+
+
+{if isset($CAN_MODERATE)}
+  <div class="modal fade" id="eliminarpost" tabindex="-1" role="dialog" aria-labelledby="eliminarpost" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                {$CONFIRM_DELETE_SHORT}
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {$CONFIRM_DELETE}
+                <hr>
+                <a class="btn btn-danger" data-dismiss="modal" aria-label="Close">{$CANCEL}</a>
+                <a class="btn btn-success" href="{$DELETE_URL}">{$DELETE}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
 
 {include file='footer.tpl'}

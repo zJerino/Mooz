@@ -8,8 +8,10 @@
       <div class="card-body">
         <p>{$CONTENT}</p>
         <p>{$ERROR}</p>
-        <a onclick="javascript:history.go(-1)" class="btn-primary">{$BACK}</a>
-        <a href="{$SITE_HOME}" class="btn-primary">{$HOME}</a>
+        <div class="btn-group">
+          <a onclick="javascript:history.go(-1)" href="#" class="btn btn-danger">{$BACK}</a>
+          <a href="{$SITE_HOME}" class="btn btn-success">{$HOME}</a>
+        </div>
       </div>
     </div>
   </div>

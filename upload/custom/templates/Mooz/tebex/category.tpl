@@ -19,16 +19,16 @@
                         {assign var=i value=0}
                             <div class="row">
                         {foreach from=$PACKAGES item=package name=packageArray}
-                            <div class="card col card-news text-center">
+                            <div class="card col-md-4 card-news text-center">
                                 <div class="card-body">
                                     <div class="card-header"><span class="card-title">
                                         {$package.name}
                                     </span></div>
 
                                     {if $package.image}
-                                        <img class="rounded" style="max-height: 150px; max-width: 150px;" src="{$package.image}" alt="{$package.name}">
+                                        <img class="rounded lazy" style="max-height: 100%; max-width: 100%;" data-src="{$package.image}" data-srcset="{$package.image}" alt="{$package.name}">
                                     {else}
-                                        <img class="rounded" style="max-height: 150px; max-width: 150px;" src="{$TEMPLATE.path}img/empty.png" alt="{$package.name}">
+                                        <img class="rounded lazy" style="max-height: 100%; max-width: 100%;" data-src="{$TEMPLATE.path}img/empty.png" data-srcset="{$TEMPLATE.path}img/empty.png" alt="{$package.name}">
                                     {/if}
                                     <br>
                                     {if $package.sale_active}
@@ -53,7 +53,7 @@
                                         </div>
                                         <div class="modal-body">
                                             {if $package.image}
-                                                <img class="rounded" style="max-width: 200px; max-height: 200px" src="{$package.image}" alt="{$package.name}" />
+                                                <img class="lazy rounded" style="max-width: 200px; max-height: 200px" data-src="{$package.image}" data-srcset="{$package.image}" alt="{$package.name}" />
                                                 <hr />
                                             {/if}
                                             <div class="forum_post">

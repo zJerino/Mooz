@@ -2,12 +2,12 @@
 {include file='navbar.tpl'}
 <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-lg-3">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             {include file='user/navigation.tpl'}
         </div>
       </div>
-      <div class="col-9">
+      <div class="col">
           <div class="card card-news">
               <div class="card-header">
                   <span class="card-title">

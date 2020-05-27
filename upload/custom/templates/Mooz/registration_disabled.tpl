@@ -2,7 +2,7 @@
 {include file='navbar.tpl'}
 <div class="container">
     <div class="row centro">
-        <div class="col-5">
+        <div class="col-5" id="contenido">
             <div class="container">
                 <div class="card card-news">
                     <div class="card-body">

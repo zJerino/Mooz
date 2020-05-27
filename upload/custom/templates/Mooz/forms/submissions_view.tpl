@@ -5,11 +5,25 @@
   <div class="row">
 	<div class="col-md-3">
 	  {include file='user/navigation.tpl'}
+	  <div class="card card-news">
+		<div class="card-header">
+			<a href="{$USER_PROFILE}" style="{$USER_STYLE}" target="_blank"><img src="{$USER_AVATAR}" class="rounded" style="max-width:25px;max-height:25px;" alt="{$USER}" /> {$USER}</a>:
+			<span class="pull-right" data-toggle="tooltip" data-original-title="{$CREATED_DATE}">{$CREATED_DATE_FRIENDLY}</span>
+		  </div>
+		<div class="card-body">
+			{foreach from=$ANSWERS item=answer}
+			<strong>{$answer.question}</strong>
+			<p>{$answer.answer}</p>
+			{/foreach}
+		  </div>
+	</div>
 	</div>
 	<div class="col-md-9">
-	  <div class="card">
+	  <div class="card card-news">
+		  <div class="card-header">
+			  <h2 class="card-title">{$SUBMISSIONS}</h2>
+		  </div>
 		<div class="card-body">
-		  <h2 class="card-title">{$SUBMISSIONS}</h2>
 		  
 			{if isset($SUCCESS)}
 			<div class="alert alert-success">
@@ -30,32 +44,18 @@
 			  <div class="col-md-4">{$CURRENT_STATUS_X}</div>
 			  <div class="col-md-4">{$LAST_UPDATED} <span class="pull-right" data-toggle="tooltip" data-original-title="{$LAST_UPDATED_DATE}">{$LAST_UPDATED_FRIENDLY}</span></div>
 			</div>
-			<hr>
-				
-            <div class="card">
-              <div class="card-header">
-				<a href="{$USER_PROFILE}" style="{$USER_STYLE}" target="_blank"><img src="{$USER_AVATAR}" class="rounded" style="max-width:25px;max-height:25px;" alt="{$USER}" /> {$USER}</a>:
-                <span class="pull-right" data-toggle="tooltip" data-original-title="{$CREATED_DATE}">{$CREATED_DATE_FRIENDLY}</span>
-              </div>
-              <div class="card-body">
-				{foreach from=$ANSWERS item=answer}
-				<strong>{$answer.question}</strong>
-				<p>{$answer.answer}</p>
-				{/foreach}
-              </div>
-            </div>
-				
+			<hr>				
 			</br>
 				
             <h5>{$COMMENTS_TEXT}</h5>
             {if count($COMMENTS)}
 			  {foreach from=$COMMENTS item=comment}
-                <div class="card">
-                  <div class="card-header">
-                    <a href="{$comment.profile}" style="{$comment.style}" target="_blank"><img src="{$comment.avatar}" class="rounded" style="max-height:25px;max-width:25px;" alt="{$comment.username}" /> {$comment.username}</a>:
-                    <span class="pull-right" data-toggle="tooltip" data-original-title="{$comment.date}">{$comment.date_friendly}</span>
-                  </div>
+                <div class="card card-news">
                   <div class="card-body">
+					  
+                    <a href="{$comment.profile}" style="{$comment.style}" target="_blank"><img src="{$comment.avatar}" class="rounded" style="max-height:25px;max-width:25px;" alt="{$comment.username}" /> {$comment.username}</a>:
+					<span class="pull-right" data-toggle="tooltip" data-original-title="{$comment.date}">{$comment.date_friendly}</span>
+					<br>
                     {$comment.content}
                   </div>
                 </div>

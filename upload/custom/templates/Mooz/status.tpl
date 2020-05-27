@@ -1,7 +1,7 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<div class="container">
+<div class="container" id="contenido">
     <h2>{$STATUS}</h2>
     {if count($SERVERS)}
         <div class="card card-news">

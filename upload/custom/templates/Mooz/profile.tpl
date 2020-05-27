@@ -1,13 +1,13 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<div class="container">
+<div class="container"  id="contenido">
     <div class="row justify-content-md-center">
         <div class="col-12">
             <div class="portada-del-perfil">
                 <div class="portada-del-perfil-img" style="background-image:url('{$BANNER}');">
                     <div class="portada-del-perfil-ubicador row">
-                        <span class="col-2"><img class="portada-del-perfil-avatar" src="{$AVATAR}"></span>
+                        <span class="col-2"><img class="lazy portada-del-perfil-avatar" data-src="{$AVATAR}" data-srcset="{$AVATAR}" src="{$AVATAR}"></span>
                         <span class="col">
                             <div  class="portada-del-perfil-nombre">
                                 <strong {if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</strong>
@@ -91,7 +91,7 @@
 			  <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <img class="rounded-circle" style="max-height:30px; max-width:30px;" src="{$post.avatar}" />
+                            <img class="lazy rounded-circle" style="max-height:30px; max-width:30px;" data-src="{$post.avatar}" data-srcset="{$post.avatar}" />
                             <a data-poload="{$USER_INFO_URL}{$post.user_id}" data-html="true" data-placement="top" href="{$post.profile}" style="{$post.user_style}">
                                 <span class="ml-1">{$post.nickname}</span>
                             </a>
@@ -141,7 +141,7 @@
                                         <br />
                                         <div class="chip" data-toggle="collapse" href="#comentario-{$reply.id}">
                                             <a href="{$reply.profile}" style="{$reply.style}">
-                                                <img class="chip-img" src="{$reply.avatar}">{$reply.nickname}
+                                                <img class="lazy chip-img" data-src="{$reply.avatar}" data-srcset="{$reply.avatar}">{$reply.nickname}
                                             </a>: {$reply.content}
                                             <div class="collapse" id="comentario-{$reply.id}">
                                                 {if ($CAN_MODERATE == 1 || $post.self == 1)}
@@ -218,7 +218,7 @@
 				  <div class="modal-body">
 				    {if isset($post.replies.replies)}
 					  {foreach from=$post.replies.replies name=replies item=reply}
-					  <img src="{$reply.avatar}" alt="{$reply.username}" style="max-height:20px; max-width:20px;" class="rounded" /> <a href="{$reply.profile}" style="{$reply.style}">{$reply.nickname}</a> &raquo;
+					  <img data-src="{$reply.avatar}" data-srcset="{$reply.avatar}" alt="{$reply.username}" style="max-height:20px; max-width:20px;" class="lazy rounded" /> <a href="{$reply.profile}" style="{$reply.style}">{$reply.nickname}</a> &raquo;
 					  <span class="float-md-right">
 					    <span rel="tooltip" title="{$reply.time_full}">{$reply.time_friendly}</span>
 					  </span>
@@ -282,7 +282,7 @@
                             {if count($FRIENDS_LIST)}
                                 {foreach from=$FRIENDS_LIST item=$item}
                                     <a class="ms-avatar" data-toggle="tooltip" data-placement="top" title="{$item.nickname}" href="{$item.profile}">
-                                        <img style="width: 30px;max-width: 30px;min-width: 30px;" src="{$item.avatar}"/>
+                                        <img class="lazy" style="width: 30px;max-width: 30px;min-width: 30px;" data-src="{$item.avatar}" data-srcset="{$item.avatar}"/>
                                     </a>
                                 {/foreach}
                             
@@ -351,8 +351,8 @@
             <div class="portada-del-perfil">
                 <div class="portada-del-perfil-img" style="background-image:url('{$BANNER}');">
                     <div class="portada-del-perfil-ubicador row">
-                        <span class="col-2"><img class="portada-del-perfil-avatar" style="width: 86px;
-    position: absolute;transform: translate3d(-25px, 32px, 106px);" src="{$AVATAR}"></span>
+                        <span class="col-2"><img data-src="{$AVATAR}" data-srcset="{$AVATAR}" class="lazy portada-del-perfil-avatar" style="width: 86px;
+    position: absolute;transform: translate3d(-25px, 32px, 106px);"></span>
                         <span class="col">
                             <div  class="portada-del-perfil-nombre">
                                 <strong {if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}" {/if}>{$NICKNAME}</strong>

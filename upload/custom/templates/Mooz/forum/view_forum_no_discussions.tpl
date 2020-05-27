@@ -1,81 +1,75 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
-
 <div class="container">
-<div class="card">
-  <div class="card-body">
-	  <div class="row">
-		<div class="col-md-9">
-		  <ol class="breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
 			{foreach from=$BREADCRUMBS item=breadcrumb}
 			<li class="breadcrumb-item{if isset($breadcrumb.active)} active{/if}">{if !isset($breadcrumb.active)}<a href="{$breadcrumb.link}">{/if}{$breadcrumb.forum_title}{if !isset($breadcrumb.active)}</a>{/if}</li>
 			{/foreach}
+            <span class="ml-auto">
+                <a class="btn btn-outline-secondary" href="{$SITE_HOME}forum/search/"><i class="fa fa-search"></i></a>
+            </span>
 		  </ol>
-		  <h3 style="display: inline;">{$FORUM_TITLE}</h3>{if $NEW_TOPIC_BUTTON}<span class="float-md-right"><a href="{$NEW_TOPIC_BUTTON}" class="btn btn-primary">{$NEW_TOPIC}</a></span>{/if}<br /><br />
-		  {if !empty($SUBFORUMS)}
-		  <div class="table-responsive">
-		    <table class="table table-striped">
-		      <colgroup>
-			    <col span="1" style="width:50%">
-			    <col span="1" style="width:20%">
-			    <col span="1" style="width:30%">
-			  </colgroup>
-			  <tr>
-			    <th colspan="3">{$SUBFORUM_LANGUAGE}</th>
-			  </tr>
-			  {foreach from=$SUBFORUMS item=subforum}
-			  <tr>
-			    <td>{$subforum.icon} <a href="{$subforum.link}">{$subforum.title}</a></td>
-				<td>{if !$subforum.redirect}<strong>{$subforum.topics}</strong> {$TOPICS}{/if}</td>
-				<td>
-				  {if !$subforum.redirect}
-				    {if count($subforum.latest_post)}
-				      <div class="row">
-				        <div class="col-md-3">
-				          <div class="frame">
-				            <a href="{$subforum.latest_post.last_user_link}"><img class="img-centre rounded" style="height:40px; width:40px;" src="{$subforum.latest_post.last_user_avatar}" alt="{$subforum.latest_post.last_user}" /></a>
-				          </div>
-				        </div>
-				        <div class="col-md-9">
-				          <a href="{$subforum.latest_post.link}">{$subforum.latest_post.title}</a>
-				          <br />
-				          <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$subforum.latest_post.time}">{$subforum.latest_post.timeago}</span><br />{$BY} <a style="{$subforum.latest_post.last_user_style}" href="{$subforum.latest_post.last_user_link}" data-poload="{$USER_INFO_URL}{$subforum.latest_post.last_user_id}" data-html="true" data-placement="top">{$subforum.latest_post.last_user}</a>
-				        </div>
-				      </div>
-				    {else}
-				      {$NO_TOPICS}
-				    {/if}
-				  {/if}
-				</td>
-			  </tr>
-			  {/foreach}
-		    </table>
-		  </div>
-		  {/if}
-		  
-		  {$NO_TOPICS_FULL}
-		</div>
-		<div class="col-md-3">
-			<form class="form-horizontal" role="form" method="post" action="{$SEARCH_URL}">
-				<div class="input-group">
-					<input type="text" class="form-control input-sm" name="forum_search" placeholder="{$SEARCH}">
-					<input type="hidden" name="token" value="{$TOKEN}">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
-					</div>
-				</div>
-			</form>
+    </nav>
+    
+    
+    <div class="row">
+        <div class="col">
+            <div class="card card-news">
+                <div class="card-header d-flex">
+                    <span class="card-title p-1">
+                        {$FORUM_TITLE}
+                    </span>
+					{if $NEW_TOPIC_BUTTON}
+						<span class="ml-auto d-table">
+							<a href="{$NEW_TOPIC_BUTTON}" class="btn btn-primary">{$NEW_TOPIC}</a>
+						</span>
+					{/if}
+                </div>
+                <div class="card-body">
+					{if !empty($SUBFORUMS)}
 
-		  {if count($WIDGETS)}
-		    <br />
-		    {foreach from=$WIDGETS item=widget}
-		      {$widget}
-		      <br />
-		    {/foreach}
-		  {/if}
-		</div>
-	  </div>
-  </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">{$SUBFORUM_LANGUAGE}</th>
+                                <th scope="col">{$TOPICS}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$SUBFORUMS item=subforum}
+                                <tr>
+                                    <td data-label="{$SUBFORUM_LANGUAGE}">
+										<a href="{$subforum.link}" data-toggle="tooltip" title=""><b>{$subforum.title}</b></a>
+									</td>
+									{if !$subforum.redirect}
+                                    <td data-label="{$TOPICS}">
+										{$subforum.topics}
+                                    </td>
+									{else}
+										<td></td>
+									{/if}
+                                </tr>
+                            {/foreach}
+                        </tbody>
+					</table>
+				  {/if}
+				  
+					{$NO_TOPICS_FULL}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            {if count($WIDGETS)}
+                {foreach from=$WIDGETS item=widget}
+                    {$widget}
+                {/foreach}
+            {/if}
+        </div>
+    </div>
 </div>
-</div>
+
+{$PAGINATION}
+
+
 {include file='footer.tpl'}

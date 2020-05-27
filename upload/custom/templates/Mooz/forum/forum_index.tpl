@@ -5,7 +5,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" href="{$BREADCRUMB_URL}" aria-current="page">{$BREADCRUMB_TEXT}</li>
-        <span class="ml-auto"><i class="fa fa-search"></i></span>
+        <a class="ml-auto" href="{$SEARCH_URL}"><i class="fa fa-search"></i></a>
     </ol>
 </nav>
 {if isset($SPAM_INFO)}
@@ -24,33 +24,35 @@
                                 <i class="fa fa-folder-open"></i> {$forum.title}
                             </span>
                         </div>
-                        <div class="card-body">
+                        {foreach from=$forum.subforums item=subforum}
+                        <div class="card-body-2 mt-1">
                             <ul class="list-group list-group-flush">
-                                {foreach from=$forum.subforums item=subforum}
                                     {if !isset($subforum->redirect_confirm)}
-                                        <li class="list-group-item encima">
+                                        <li class="list-group-item forocard">
                                             <div class="row">
-                                                <div class="col-1" id="quitadordepm">
+                                                <div class="col-1 _asduasdi" id="quitadordepm">
                                                     {if empty($subforum->icon)}
                                                         <i class="fa fa-comments fa-2x"></i>
                                                     {else}
                                                         {$subforum->icon}
                                                     {/if}
                                                 </div>
-                                                <div class="col">
-                                                    <b>
-                                                        <a class="normal" href="{$subforum->link}">{$subforum->forum_title}</a>
-                                                    </b>
-                                                    <p id="quitadordepm">
-                                                        <b>{$subforum->topics}</b> <small> {$TOPICS|capitalize}</small>
-                                                        <b>{$subforum->posts}</b><small>{$POSTS|capitalize}</small>
+                                                <div class="col _asduasdi" style="text-align: start;">
+                                                    <a class="normal _asduasdi" href="{$subforum->link}"><b>{$subforum->forum_title}</b></a>
+                                                </div>
+                                                <div class="col row _asduasdi" id="quitadordepm">
+                                                    <p>
+                                                        <div class="col">
+                                                            <small> {$TOPICS|capitalize}</small> <br> <b>{$subforum->topics}</b>
+                                                        </div>
+                                                        <div class="col">
+                                                            <small> {$POSTS|capitalize}</small> <br> <b>{$subforum->posts}</b>
+                                                        </div>
                                                     </p>
-
                                                 </div>
                                                 <div class="col-4 d-none d-sm-none d-md-block ml-auto">
                                                     {if isset($subforum->last_post)}
                                                         <div class="media">
-                                                            <img class="mr-3 rounded-circle" src="{$subforum->last_post->avatar}" style="width: 25px">
                                                             <div class="media-body">
                                                                 <span class="mt-0 mb-1">
                                                                     <a href="{$subforum->last_post->link}">{$subforum->last_post->title}</a>
@@ -86,69 +88,9 @@
                                             </div>
                                         </li>
                                     {/if}
-                                {/foreach}
                             </ul>
-                            {*<table class="table table-hover">
-                                {foreach from=$forum.subforums item=subforum}
-                                    {if !isset($subforum->redirect_confirm)}
-                                        <div class="container">
-                                            <a>
-                                            
-                                        <div class="row encima">
-                                            <div class="col-1">
-                                                {if empty($subforum->icon)}
-                                                    <i class="fa fa-comments fa-2x"></i>
-                                                {else}
-                                                    {$subforum->icon}
-                                                {/if}
-                                            </div>
-                                            <div class="col-4">
-                                                <b>
-                                                    <a style="color: inherit" href="{$subforum->link}">{$subforum->forum_title}</a>
-                                                </b>
-                                            </div>
-                                            <div class="col d-none d-sm-none d-md-block">
-                                                {if isset($subforum->last_post)}
-                                                    <li class="media">
-                                                        <img class="mr-3 rounded-circle" src="{$subforum->last_post->avatar}" style="width: 25px">
-                                                        <div class="media-body">
-                                                            <span class="mt-0 mb-1">
-                                                                <a href="{$post.last_reply_link}">{$subforum->last_post->title}</a>
-                                                                <p>
-                                                                    <a style="{$subforum->last_post->user_style}" href="{$subforum->last_post->profile}">{$subforum->last_post->username}</a> &bull; <span data-toggle="tooltip" title="{$subforum->last_post->post_date}">{$subforum->last_post->date_friendly}</span>
-                                                                </p>
-                                                            </span>
-                                                        </div>
-                                                    </li>
-                                                {else}
-                                                    <h4 style="padding: 8px 0">{$NO_TOPICS}</h4>
-                                                {/if}
-                                            </div>
-                                        </div>
-                                            </a>
-                                        </div>
-                                    {else}
-                                <div class="container">
-                                    
-                                <div class="row encima">
-                                    <div class="col-1">
-                                        {if empty($subforum->icon)}
-                                            <i class="fa fa-comments-alt fa-2x"></i>
-                                        {else}
-                                            {$subforum->icon}
-                                        {/if}
-                                    </div>
-                                    <div class="col">
-                                        <b>
-                                            <a style="color: inherit" href="{$subforum->redirect_url}">{$subforum->forum_title}</a>
-                                        </b>
-                                    </div>
-                                </div>
-                                </div>
-                                {/if}
-                            {/foreach}
-                            </table>*}
                         </div>
+                        {/foreach}
                     </div>
                 {/if}
             {/foreach}

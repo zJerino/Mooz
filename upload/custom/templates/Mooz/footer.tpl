@@ -1,3 +1,4 @@
+</main>
 {if isset($GLOBAL_WARNING_TITLE)}
     <div class="modal-open modal fade show" id="modal-acknowledge" tabindex="-1" role="dialog" aria-labelledby="modal-acknowledge" aria-modal="true" style="padding-right: 10px; display: block;">
         <div class="modal-dialog" role="document">
@@ -43,13 +44,13 @@
             <div class="footer">
                 <div class="row">
                     <div class="col">
-                        <h1>{$ABOUT_US}</h1>
+                        <h1>{$MZ_LANG.0}</h1>
                         <p>
-                            {$MZ_FOOTERTEXT}
+                            {$MZ_FS.FTEXTO}
                         </p>
                     </div>
                     <div class="col  d-none d-sm-none d-md-block">
-                        <h1>{$QUICK_LINK}</h1>
+                        <h1>{$MZ_LANG.1}</h1>
                         <p>
                             {foreach from=$FOOTER_NAVIGATION key=name item=item}
                                 {if isset($item.items)}
@@ -105,13 +106,7 @@
                     </div>
                 </div>
             </div>
-        </footer>     
-        {* Soon *}
-        {*
-        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>  
-        *}
+        </footer>
         {foreach from=$TEMPLATE_JS item=script}
             {$script}
         {/foreach}
@@ -119,7 +114,6 @@
             {$scripts}
         {/foreach}
         
-        <script type="text/babel" src="{$TEMPLATE.path}js/core/react.core.js"></script>
         {if isset($MAINTENANCE_ENABLED)}
             <script type="text/javascript">toastr.error(Mantenimiento)</script>
         {/if}
@@ -152,5 +146,6 @@
                 </script>
             {/literal}
         {/if}
+        
     </body>
 </html>

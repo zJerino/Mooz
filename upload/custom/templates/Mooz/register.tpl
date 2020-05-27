@@ -2,7 +2,7 @@
 {include file='navbar.tpl'}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" id="contenido">
             <h3>
                 {$CREATE_AN_ACCOUNT}
             </h3>

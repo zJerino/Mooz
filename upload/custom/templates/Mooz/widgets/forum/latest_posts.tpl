@@ -6,7 +6,7 @@
         <ul class="list-unstyled">
             {foreach from=$LATEST_POSTS_ARRAY name=latest_posts item=post}
                 <li class="media">
-                    <img class="mr-3 rounded-circle" src="{$post.last_reply_avatar}" alt="{$post.last_reply_username}" style="width: 25px">
+                    <img class="lazy mr-3 rounded-circle" data-srcset="{$post.last_reply_avatar}" data-src="{$post.last_reply_avatar}" alt="{$post.last_reply_username}" style="width: 25px">
                     <div class="media-body">
                         <span class="mt-0 mb-1">
                             <a href="{$post.last_reply_link}">{$post.topic_title}</a>

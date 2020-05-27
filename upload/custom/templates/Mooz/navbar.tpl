@@ -50,7 +50,7 @@
     </div>
 <nav id="navbar" class="navbar navbar-expand-lg navbar-primary">
   <div class="container" id="navbar123123">
-        <a class="navbar-brand" href="{$SITE_HOME}">{$WN_VALUE}</a>
+        <a class="navbar-brand" href="{$SITE_HOME}">{$MZ_GS.WEB_NAME}</a>
         <a class="navbar-toggler" data-target="#sidenav" data-toggle="navdrawer"><i class="material-icons">reorder</i></a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -81,11 +81,11 @@
     </div>
 </nav>
 </div>
-<div class="jumbotron jumbotron-fluid bheader" style="box-shadow: none;margin-bottom: 25px;{if isset($MZ_BANNER)}background-image: url('{$MZ_BANNER}'){/if}">    <br />
+<div class="jumbotron jumbotron-fluid bheader" style="box-shadow: none;margin-bottom: 25px;background-image: url('{if isset($MZ_GS.WEB_BANN)} {$MZ_GS.WEB_BANN} {/if}')">    <br />
     <div class="container">
         <center>
             <i class="variable123123123">
-                <img src="{if isset($MZ_LOGO)}{$MZ_LOGO}{else}{$TEMPLATE.path}img/banner.png{/if}" {if ($LOGO_ANIMADO gte animated)}class="{$LOGO_ANIMADO}"{/if} style="width: 220px;">
+                <img class="lazy" data-src="{if isset($MZ_GS.WEB_LOGO)}{$MZ_GS.WEB_LOGO}{else}{$TEMPLATE.path}img/logo.png{/if}" data-srcset="{if isset($MZ_GS.WEB_LOGO)}{$MZ_GS.WEB_LOGO}{else}{$TEMPLATE.path}img/logo.png{/if}" {if ($LOGO_ANIMADO gte animated)}class="{$LOGO_ANIMADO}"{/if} style="width: 220px;">
             </i>
         </center>
     </div>
@@ -93,13 +93,13 @@
 <div aria-hidden="true" class="navdrawer" id="sidenav" tabindex="-1">
   <div class="navdrawer-content">
     <div class="navdrawer-header">
-      <a class="navbar-brand px-0" href="{$SITE_HOME}">{$SITE_NAME}</a>
+      <a class="navbar-brand px-0" href="{$SITE_HOME}">{$MZ_GS.WEB_NAME}</a>
     </div>
     <nav class="navdrawer-nav">
         {foreach from=$NAV_LINKS key=name item=item}
             {if isset($item.items)}
               <li class="nav-item {if isset($item.active)}active{/if}">
-                <a class="nav-link" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{$item.icon} {$item.title}</a>
+                <a class="nav-link" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">{$item.icon} {$item.title}</a>
               </li> 
               <div class="collapse" id="collapseExample">
                 {foreach from=$item.items item=dropdown}
@@ -137,7 +137,7 @@
                   
   {if isset($MAINTENANCE_ENABLED)}
   <div class="alert alert-danger alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <button class="close" data-dismiss="alert" aria-label="Close">
 		  <span aria-hidden="true">&times;</span>
 	  </button>
 	  {$MAINTENANCE_ENABLED}
@@ -158,3 +158,12 @@
     
     <br />
 </div>
+<main>
+ <div class="container">
+  {if ($MZ_GS.WEB_ANUN == "1")}
+    <div class="alert alert-{$MZ_AS.TIPO}">
+      <b>{$MZ_AS.TITULO}</b>
+      <p class="m-0">{$MZ_AS.DESCRI}</p>
+    </div>
+  {/if}
+ </div>

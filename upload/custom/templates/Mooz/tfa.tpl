@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row centro">
-        <div class="col-10">
+        <div class="col-10"  id="contenido">
             {if isset($ERROR)}
               <div class="alert alert-danger">
                   {$ERROR}
