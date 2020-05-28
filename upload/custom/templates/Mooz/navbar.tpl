@@ -81,7 +81,7 @@
   </div>
 </nav>
 </div>
-<div class="jumbotron jumbotron-fluid bheader" style="box-shadow: none;margin-bottom: 25px;background-image: url('{if isset($MZ_GS.WEB_BANN)} {$MZ_GS.WEB_BANN} {/if}')">    <br />
+<div class="jumbotron-fluid bheader" style="box-shadow: none;margin-bottom: 25px;background-image: url('{if isset($MZ_GS.WEB_BANN)} {$MZ_GS.WEB_BANN} {/if}')">    <br />
   <div class="container">
       <center>
           <i class="variable123123123">

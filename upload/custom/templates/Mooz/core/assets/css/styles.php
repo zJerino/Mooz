@@ -100,9 +100,10 @@ body, label, input {
 .alert-primary {
     background-color: var(--cardb) !important;
 }
-
 .spoiler {
-    background-color: rgba(151, 151, 151, 0.363);
+    background-color: var(--cardf);
+    border-left: 3px solid var(--color1);
+    box-shadow: none;
 }
 .text-muted {
     color: var(--text-2) !important;
