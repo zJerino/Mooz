@@ -240,8 +240,6 @@ class Mooz_Template extends TemplateBase {
 					$file = fopen(ROOT_PATH . '/modules/Core/pages/home.php','w');
 					fwrite($file, $ALMH);
 					fclose($file);
-				} else {
-					die('ERROR POR FAVOR REVISE QUE LOS ARCHIVOS SEAN EDITABLES PARA SEGUIR CON LA INSTALACION CORRECTA <B>002</B>');
 				}
 			} catch (\Throwable $th) {
 				//throw $th;
