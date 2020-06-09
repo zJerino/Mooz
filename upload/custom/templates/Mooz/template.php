@@ -233,7 +233,6 @@ class Mooz_Template extends TemplateBase {
 		if (!strpos($AENH, '$Verificador')){
 			try {
 				if (is_readable(ROOT_PATH . '/custom/templates/Mooz/core/replace/home.php')) {
-					echo "yes";
 					$ALMH = file_get_contents(ROOT_PATH . '/custom/templates/Mooz/core/replace/home.php');
 				}
 				if(is_writable(ROOT_PATH . '/modules/Core/pages/home.php')){
