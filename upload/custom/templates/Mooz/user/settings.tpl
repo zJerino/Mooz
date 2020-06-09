@@ -4,13 +4,6 @@
     <div class="row">
         <div class="col-lg-3">
             {include file='user/navigation.tpl'}
-            <div class="card card-news">
-                <div class="card-body">
-                    <div class="container nav flex-column nav-pills">
-                        <a class="nav-link" id="v-pills-settings-tab" href="{$item.link}">{$item.title}</a>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="col">
               <div class="card card-news">
