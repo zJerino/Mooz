@@ -3,7 +3,7 @@
  *	NamelessMC by Samerton |  Mooz Template by zJerino
  *
  *	License: MIT
- *
+ *	Cache d158baba76918cba404ac4ed3da2b2ff345227cd.cache
  */
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/')) {
 	echo 'ERROR 0001';
@@ -11,14 +11,7 @@ if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/')) {
 }
 chmod(ROOT_PATH . "/custom/templates/Mooz/core/settings/styles.json", 0777);
 chmod(ROOT_PATH . "/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php", 0777);
-if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json')) {
-	echo 'ERROR 0002';
-	die();
-}
-if(!is_writable(ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json')) {
-	echo 'ERROR 0003';
-	die();
-}
+
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php')) {
 	echo 'ERROR 0004';
 	die();
@@ -28,8 +21,6 @@ $cache->setcache('Mooz-baleehh');
 //DMA
 $DMA = ROOT_PATH . '/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php';
 if (file_exists($DMA)) {
-	if (is_writable($DMA)) {
-		if (is_readable($DMA)) {
 			$Mooz_General = $cache->retrieve('General_Settigns');
 			if (!empty($Mooz_General)) {
 				$smarty->assign(array(
@@ -89,13 +80,15 @@ if (file_exists($DMA)) {
 					$cache->store('SCSS_Settigns', $SCSS_INPUT);
 					$json_string = json_encode($SCSS_INPUT, JSON_PRETTY_PRINT);
 					$file = ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json';
-					if (is_readable($file) && is_writable($file)) {
-						file_put_contents($file, $json_string);
-					} else {
-						echo "Error al intentar configurar";
+					file_put_contents($file, $json_string);
+					if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json')) {
+						echo 'ERROR 0002';
 						die();
 					}
-						
+					if(!is_writable(ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json')) {
+						echo 'ERROR 0003';
+						die();
+					}
 		
 					$success = 'Informacion enviada';
 					
@@ -131,16 +124,8 @@ if (file_exists($DMA)) {
 					   echo $th;
 				   }
 			}
-		} else {
-			echo 'No podemos Leer DMA';
-			echo 'ERROR 0005';
-			die();
-		}
-	} else {
-		echo 'No podemos Escribir en DMA';
-		echo 'ERROR 0006';
-		die();
-	}
+
+	
 } else {
 	echo 'No podemos encontrar DMA';
 	echo 'ERROR 0007';
@@ -185,8 +170,6 @@ class Mooz_Template extends TemplateBase {
 				$template['assets'] . 'js/failsafe.js' => array('async' => "yes"),
 			));
 		}
-		
-	
 
 		$MoozOptions['ANI'] = 'true';
 
@@ -206,6 +189,10 @@ class Mooz_Template extends TemplateBase {
 			$NamelessMC['core']['assets'] . 'plugins\tinymce\plugins\spoiler\js\spoiler.js' => array(),
 			$template['assets'] . 'js/toastr.min.js' => array(),
 		));
+		
+		// Define chatbox script path
+		define('CHATBOX_SCRIPT', $template['assets'] . 'js/chatbox.js');
+
 		if ($Mooz_General['WEB_TEM'] == '1') {
 			$this->addJSFiles(array(
 				'https://twemoji.maxcdn.com/v/13.0.0/twemoji.min.js' => array('integrity' => "sha384-avLpk7eChiSgpDvwa4N7hvg9vj6V9sfFmGHurVkPOlWUalASzcO3d2x3qcbQqhsH", 'crossorigin' => "anonymous"),
