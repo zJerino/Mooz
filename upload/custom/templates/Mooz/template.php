@@ -158,7 +158,7 @@ class Mooz_Template extends TemplateBase {
 			'name' => 'Mooz',
 			'version' => '2.0.0-pr7',
 			'nl_version' => "2.0.0-pr7",
-			'author' => '<a href="https://LaboratorioMC.com.ve/" target="_blank">zBaneado</a>',
+			'author' => '<a href="https://discord.com/invite/SKk3GvQ" target="_blank">zJerino</a>',
 			'path' => (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/Mooz/',
 			'assets' => (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/Mooz/core/assets/',
 		);
