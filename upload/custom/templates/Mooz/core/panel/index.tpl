@@ -52,8 +52,11 @@
                             </div>
                             <div class="form-group row">
                                 <label for="webKeywords" class="col-sm-2 col-form-label">Web Keywords</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-8">
                                   <input type="text" class="form-control" id="webKeywords" name="webKeywords" maxlength="80" value="{$GENERAL_VALUE.WEB_KEYW}" placeholder="NamelessMC, CMS, {$SITE_NAME}">
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="{$MORE_DATOS}" class="btn btn-primary">Pages Metadata</a>
                                 </div>
                             </div>
                             <div class="form-group row">

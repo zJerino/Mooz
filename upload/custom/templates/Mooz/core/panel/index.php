@@ -1,6 +1,8 @@
 <?php
 $MzLang = new Language(ROOT_PATH . '/custom/templates/Mooz/core/language', LANGUAGE);
 
+$META_DATOS = URL::build('/panel/core/metadata/');
+
 require(ROOT_PATH . '/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php');
 
 if (Input::exists()) {
@@ -95,7 +97,6 @@ if (Input::exists()) {
     }
 }
 
-
 $resultados_general = $cache->retrieve('General_Settigns');
 
 $file_json_css = ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json';
@@ -119,6 +120,7 @@ $smarty->assign(array(
 	'GENERAL_VALUE' => $ValehhEsSatanica,
 	'ANUNCIO_VALUE' => $ValehhEsMiAmigaUwU,
 	'FOOTER' => $ValehhEsMiMejorAmigaUwU,
+	'MORE_DATOS' => $META_DATOS,
     'SETTINGS_TEMPLATE' => ROOT_PATH . '/custom/templates/Mooz/core/panel/index.tpl',
 ));
 

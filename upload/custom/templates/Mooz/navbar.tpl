@@ -57,7 +57,7 @@
           <ul class="navbar-nav ml-auto">
               {foreach from=$NAV_LINKS key=name item=item}
                   {if isset($item.items)}
-                    <div class="nav-item nav-link dropdown-toggle"  data-variation="mini" data-toggle="popup" data-position="bottom right">{$item.title}</div>
+                    <div class="nav-item nav-link dropdown-toggle"  data-variation="mini" data-toggle="popup2" data-position="bottom right">{$item.title}</div>
                       <div class="ui popup bottom right">
                         <a class="item-dropdown">{$item.title}</a>
                         <div id="awaslokas">

@@ -199,11 +199,11 @@ class Mooz_Template extends TemplateBase {
 			$template['assets'] . 'js/jquery.min.js' => array(),
 			$template['assets'] . 'js/popper.min.js' => array(),
 			$template['assets'] . 'js/jquery.cookie.js' => array(),
-			$template['assets'] . 'js/bootstrap.min.js' => array('async' => "yes"),
-			$template['assets'] . 'js/material.js' => array('async' => "yes"),
+			$template['assets'] . 'js/bootstrap.min.js' => array(),
+			$template['assets'] . 'js/material.js' => array(),
 			$template['assets'] . 'semantic-ui/transition.min.js' => array(),
-			$template['assets'] . 'semantic-ui/popup.min.js' => array('defer' => "yes"),
-			$NamelessMC['core']['assets'] . 'plugins\tinymce\plugins\spoiler\js\spoiler.js' => array('async' => "yes"),
+			$template['assets'] . 'semantic-ui/popup.min.js' => array(),
+			$NamelessMC['core']['assets'] . 'plugins\tinymce\plugins\spoiler\js\spoiler.js' => array(),
 			$template['assets'] . 'js/toastr.min.js' => array(),
 		));
 		if ($Mooz_General['WEB_TEM'] == '1') {
@@ -304,10 +304,10 @@ class Mooz_Template extends TemplateBase {
 		$this->addJSScript($JSVars);
 		$this->addJSFiles(array(
 			$this->_template['assets'] . 'js/core/core.js' => array(),
-			$this->_template['assets'] . 'js/core/user.js' => array('defer' => "yes"),
-			$this->_template['assets'] . 'js/core/pages.js' => array('async' => "yes"),
-			$this->_template['assets'] . 'js/core/chuchuwa.js' => array('defer' => "yes"),
-			$this->_template['assets'] . 'js/scripts.js' => array('async' => "yes"),
+			$this->_template['assets'] . 'js/core/user.js' => array(),
+			$this->_template['assets'] . 'js/core/pages.js' => array(),
+			$this->_template['assets'] . 'js/core/chuchuwa.js' => array(),
+			$this->_template['assets'] . 'js/scripts.js' => array(),
 		));
 
 		foreach($this->_pages->getAjaxScripts() as $script){
