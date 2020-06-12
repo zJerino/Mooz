@@ -38,7 +38,7 @@ var chatbox = {
 			</avatar>
 			<div class="align-self-center" >
 				<div class="d-flex align-items-start">
-				<a class="text-muted" href="{authorProfile}" style="{authorStyle}">{authorUsername}</a> &nbsp; &bull; &nbsp; <span class="text-muted" data-toggle="tooltip" data-html="true" title="{messageTimeFull}">{messageTime}</span>
+				<a href="{authorProfile}" style="{authorStyle}">{authorUsername}</a> &nbsp; &bull; &nbsp; <span class="text-muted" data-toggle="tooltip" data-html="true" title="{messageTimeFull}">{messageTime}</span>
 				</div>
 				<div class="d-flex align-items-end">
 					{messageContent}
