@@ -24,6 +24,14 @@
                 </div>
             </div>
         </div>
+        <div class="card card-news">
+            <div class="card-header">
+                Discord Support
+            </div>
+            <div class="card-body centro">
+                <iframe src="https://ptb.discordapp.com/widget?id=465225722441498634&theme=light" height="500" allowtransparency="true" frameborder="0"></iframe>
+            </div>
+        </div>
     </div>
     <div class="col order-12 tab-content" id="v-pills-tabContent">
 <div class="card card-news">
