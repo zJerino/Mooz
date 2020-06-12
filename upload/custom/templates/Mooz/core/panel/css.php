@@ -21,3 +21,8 @@ ol.breadcrumb.float-sm-right {
     color: #fff !important;
     margin-left: 0;
 }
+iframe {
+    width: 100%;
+    position: static;
+    display: block;
+}
