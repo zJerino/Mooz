@@ -38,8 +38,8 @@
         {/foreach}
 
         <script>
-            {* Only for Mooz Template *}
-            {* No Copy :( *}
+            // Only for Mooz Template
+            // No Copy :( 
             document.addEventListener("DOMContentLoaded", function() {
                 var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
 

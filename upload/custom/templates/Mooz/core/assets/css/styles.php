@@ -146,3 +146,17 @@ body, label, input {
     .navbar-nav .nav-link{
         cursor: pointer;
     }
+    avatar>img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+#ChatMensajes {
+    margin-bottom: 12px;
+    background-color: rgba(148, 148, 148, 0.10196078431372549);
+    border-radius: 6px;
+    height: 250px;
+    max-width: 100%;
+    overflow-y: scroll;
+    max-height: 13rem;
+}

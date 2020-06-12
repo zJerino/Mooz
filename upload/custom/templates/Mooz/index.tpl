@@ -1,7 +1,9 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 <div class="container">
-    
+    <div id="XemahIsgod">
+
+    </div>
     
     {if isset($HOME_SESSION_FLASH)}
         <span class="alert alert-success">
