@@ -6,12 +6,12 @@
 var chatbox = {
 	template: `
 		<div class="card card-news" id="chatbox" style="border-radius: 5px;">
+			<div class="card-header">
+				<span class="card-title">
+					{chatboxTitle}
+				</span>
+			</div>
 			<div class="card-body mb-2 rounded ">
-				<div class="card-header">
-					<span class="card-title">
-						{chatboxTitle}
-					</span>
-				</div>
 				<div id="ChatMensajes">
 					{chatboxLoading}
 				</div>
