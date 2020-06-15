@@ -7,15 +7,6 @@
  */
 
 /* [~~~~~~(ERRORES)~~~~~~] */
-//Intentar solucionar siguientes errores
-
-//Solucion a el error #001
-chmod(ROOT_PATH . "/custom/templates/Mooz/core/settings/", 0776);
-//Solucion a el error #002
-chmod(ROOT_PATH . "/custom/templates/Mooz/core/assets/", 0776);
-//Solucion a el error #003
-chmod(ROOT_PATH . "/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php", 0776);
-
 // Inspeccion
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/settings/')) {
     echo 'ERROR #001';
