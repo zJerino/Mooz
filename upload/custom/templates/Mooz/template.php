@@ -19,29 +19,29 @@ chmod(ROOT_PATH . "/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php", 0776)
 // Inspeccion
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/settings/')) {
     echo 'ERROR #001';
-    echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+    echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
     die();
 }
 if(!is_writable(ROOT_PATH . '/custom/templates/Mooz/core/settings/')) {
     echo 'ERROR #001';
-    echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+    echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
     die();
 }
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/assets/')) {
     echo 'ERROR #002';
-    echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+    echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
     die();
 }
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/panel/KASDISAASDYIADG.php')) {
     echo 'ERROR #003';
-    echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+    echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
     die();
 }
 /* [~~~~~~(Instalacion)~~~~~~] */
 //Exportar idioma personalizado de Mooz
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/')) {
     echo 'ERROR #004';
-    echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+    echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
     die();
 }
 $MzLang = new Language(ROOT_PATH . '/custom/templates/Mooz/core/language', LANGUAGE);
@@ -73,12 +73,12 @@ if (empty($MZC['GENERAL'])) {
 
         if(!is_readable($file)) {
             echo 'ERROR 005';
-            echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+            echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
             die();
         }
         if(!is_writable($file)) {
             echo 'ERROR 005';
-            echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a>';
+            echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a>';
             die();
         }
 
@@ -124,7 +124,7 @@ if (empty($MZC['GENERAL'])) {
                 die();
             }
             echo 'ERROR 005.1';
-            echo '<br /> <a href="http://Links.LaboratorioMC.com/Support/Discord"><b>Discord Support</b></a> <br>';
+            echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a> <br>';
             echo 'Reinstall Mooz? ';
             echo '<a href="?MZ_ACTION=Reinstall">Yes</a>';
             die();
