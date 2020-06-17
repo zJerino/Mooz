@@ -22,7 +22,7 @@ var chatbox = {
 								<input type="text" id="chatInput" class="form-control" placeholder="{chatboxMessagePlaceholder}">      
 							</div>
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-angle-right"></i></button>
+								<button class="btn btn-primary" type="submit"><i class="fa fa-angle-right"></i></button>
 							</div>
 						</div>
 					</form>
