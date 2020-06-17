@@ -20,6 +20,10 @@
     
     <div class="row justify-content-center">
         <div class="col-lg-9">
+            
+<div id="XemahIsgod">
+
+</div>
             {if count($NEWS)}
                 {foreach from=$NEWS item=item}
                     <div class="card card-news">
