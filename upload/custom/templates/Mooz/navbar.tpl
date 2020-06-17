@@ -167,7 +167,4 @@
   </div>
 {/if}
 
-<div id="XemahIsgod">
-
-</div>
 </div>

@@ -1,10 +1,10 @@
 <div class="card card-news">
-    <div class="card-header">
-        <span class="card-title">
-            {$LATEST_PURCHASES}
-        </span>
-    </div>
     <div class="card-body">
+        <div class="card-header">
+            <span class="card-title">
+                {$LATEST_PURCHASES}
+            </span>
+        </div>
         {if count($PURCHASES)}
             {foreach from=$PURCHASES item=purchase name=purchases_array}
                 <div class="row align-items-center">
