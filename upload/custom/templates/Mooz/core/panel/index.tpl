@@ -29,7 +29,7 @@
                 Discord Support
             </div>
             <div class="card-body centro">
-                <iframe src="https://discordapp.com/widget?id=465225722441498634&theme=light" height="500" allowtransparency="true" frameborder="0"></iframe>
+                <iframe src="https://ptb.discordapp.com/widget?id=465225722441498634&theme=light" height="500" width="100%" allowtransparency="true" frameborder="0"></iframe>
             </div>
         </div>
     </div>
