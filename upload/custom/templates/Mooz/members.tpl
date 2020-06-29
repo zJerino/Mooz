@@ -10,7 +10,9 @@
 		<div class="card-header">
 			<span>
 				<ul class="row no-gutters mb-0 px-2">
-					{$TITLE}
+				    <div class="card-title">
+                      {$TITLE}
+					</div>
 					{* Si hay mas de 6 grupos se hace un drop down de semantic ui*}
 					<a class="ml-auto" data-variation="mini" data-toggle="popup"><i class="fa fa-user-tag"></i></a>
 					<div class="ui popup">
