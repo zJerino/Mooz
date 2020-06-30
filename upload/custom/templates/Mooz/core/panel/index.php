@@ -39,7 +39,8 @@ if (Input::exists()) {
                 'WARNING' => $_POST['WARNING'], 
                 'DANGER' => $_POST['DANGER'], 
                 // OTHERS
-                'BODY' => $_POST['BODY'], 
+                'BODY' => $_POST['BODY'],
+                'HICONS' => $_POST['HICONS'], 
                 'F_1' => $_POST['FONT_1'], 
                 'F_2' => $_POST['FONT_2'], 
                 'F_3' => $_POST['FONT_3'], 

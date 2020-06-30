@@ -5,7 +5,7 @@
  *	License: MIT
  *	Cache d158baba76918cba404ac4ed3da2b2ff345227cd.cache
  */
-
+$URL_ASDASDA = (isset($_GET['route']) ? rtrim($_GET['route'], '/') : '/');
 /* [~~~~~~(ERRORES)~~~~~~] */
 // Inspeccion
 if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/settings/')) {
@@ -36,6 +36,7 @@ if(!is_readable(ROOT_PATH . '/custom/templates/Mooz/core/')) {
     die();
 }
 $MzLang = new Language(ROOT_PATH . '/custom/templates/Mooz/core/language', LANGUAGE);
+
 
 //El Cache de la Valeehh
 $cache->setcache('Mooz-baleehh');
@@ -106,22 +107,42 @@ if (empty($MZC['GENERAL'])) {
     ));
     $file = ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json';
     //Revision de Style.json
-    if(defined('BACK_END')){
-        if(!file_exists($file)){
-            if (isset($_GET['MZ_ACTION']) && $_GET['MZ_ACTION'] == 'Reinstall') {
-                echo 'Reinstalando...';
-                unlink(ROOT_PATH.'/cache/d158baba76918cba404ac4ed3da2b2ff345227cd.cache');
-                Redirect::to((defined('CONFIG_PATH') ? CONFIG_PATH : ''));
+    if(!file_exists($file)){
+        if(defined('BACK_END')){
+            if ($_POST['IEJOQWEJQWEOQJWEOJQWIEJQOEJQOJWEOQJ'] == 'yes') {
+                echo 'Reinstalando';
+                try {
+                    $SCSS_INPUT = array(
+                        // COLORES PRIMARIOS
+                        'PRIMARY_OP' => 1, 'PRIMARY_1' => 'rgb(255, 224, 80)', 'PRIMARY_2' => 'rgb(255, 116, 116)', 'SECONDARY' => 'rgb(194, 194, 194)', 'LIGHT' => 'rgb(231, 231, 231)', 'DARK' => 'rgb(22, 22, 22)', 'SUCCESS' => "rgb(49, 206, 0)", 'INFO' => "rgb(2, 190, 249)", 'WARNING' => "rgb(247, 247, 0)", 'DANGER' => "rgb(253, 0, 0)",
+                        // OTHERS
+                        'BODY' => "rgb(231, 231, 231)", 'HICONS' => "rgb(73, 73, 73)", 'F_1' => "rgb(73, 73, 73)",'F_2' => "rgb(103, 103, 103)", 'F_3' => "rgb(243, 241, 241)", 'F_4' => "rgb(36, 36, 36)", 'CARD_B' => "rgb(255, 255, 255)", 'CARD_F' => "rgb(247, 247, 247)", 'FUENTE' => "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap');", 'FUENTE2' => "font-family: 'Montserrat', sans-serif;", 'SFUENTE' => "0.9rem"
+                    );
+                    $json_string = json_encode($SCSS_INPUT, JSON_PRETTY_PRINT);
+                    $file = ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json';
+                    file_put_contents($file, $json_string);
+                } catch (\Throwable $th) {}
+                echo '<script>setTimeout(function(){window.location.replace("/");}, 5000)</script>';
+                die();
+            } else {
+                echo 'ERROR 005.1';
+                echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a> <br>';
+                echo 'Reinstall Mooz? ';
+                echo '        <form action="" method="post"><input type="text"  hidden value="yes" name="IEJOQWEJQWEOQJWEOJQWIEJQOEJQOJWEOQJ"><input type="submit" value="Yes"></form>';
                 die();
             }
-            echo 'ERROR 005.1';
-            echo '<br /> <a href="http://Links.laboratoriomc.com.ve/Support/Discord"><b>Discord Support</b></a> <br>';
-            echo 'Reinstall Mooz? ';
-            echo '<a href="?MZ_ACTION=Reinstall">Yes</a>';
+        } else {
+            echo "Contacte con un administrador. <br/>";
+            if(SITE_NAME != 'LaboratorioMC'){
+                echo SITE_NAME . " and LaboratorioMC &copy; 2020.";
+            } else {
+                echo "LaboratorioMC &copy; 2020.";
+            }
             die();
         }
     }
 }
+
 
 $GLOBALS['Mooz_General'] = $Mooz_General;
 

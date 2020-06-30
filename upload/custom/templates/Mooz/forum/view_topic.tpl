@@ -10,7 +10,7 @@
                     {/foreach}
                     {if isset($CAN_MODERATE)}
                         <span class="ml-auto">
-                            <div class="btn btn-primary btn-sm dropdown-toggle" id="button-{$name}" data-variation="mini" data-toggle="popup"><i class="fa fa-user"></i> {$MOD_ACTIONS}</div>
+                            <div class="btn btn-primary btn-sm dropdown-toggle" id="button-{$name}" data-variation="mini" data-toggle="popup2"><i class="fa fa-user"></i> {$MOD_ACTIONS}</div>
                             <div class="ui popup">
                                 <a class="item-dropdown">{$MOD_ACTIONS}</a>
                                 <div id="awaslokas">

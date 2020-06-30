@@ -257,6 +257,19 @@
                                 </div>
                             </div>
                             <div class="input-group form-group row color-piker">
+                                <label for="asasdasdas" class="col-sm-2 col-form-label">Iconos de la cabecera</label>
+                                <div class="col-sm-10">
+                                    <span class="row">
+                                        <input type="text"  id="asasdasdas" name="HICONS" class="form-control col" value="{$CSS_VALUE.HICONS}"/>
+                                        <span class="input-group-append col-1 m-0 p-0">
+                                            <span class="input-group-text colorpicker-input-addon">
+                                                <i></i>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="input-group form-group row color-piker">
                                 <label for="nose" class="col-sm-2 col-form-label">FONT COLOR 1</label>
                                 <div class="col-sm-10">
                                     <span class="row">

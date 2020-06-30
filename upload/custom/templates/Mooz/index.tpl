@@ -60,7 +60,6 @@
                             </a>
                         </div>
                     </div>
-                <br />
                 {/foreach}
             {/if}
         </div>

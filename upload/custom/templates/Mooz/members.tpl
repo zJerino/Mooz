@@ -12,7 +12,7 @@
 				<ul class="row no-gutters mb-0 px-2">
 					{$TITLE}
 					{* Si hay mas de 6 grupos se hace un drop down de semantic ui*}
-					<a class="ml-auto" data-variation="mini" data-toggle="popup"><i class="fa fa-user-tag"></i></a>
+					<a class="ml-auto" data-variation="mini" data-toggle="popup2"><i class="fa fa-user-tag"></i></a>
 					<div class="ui popup">
 						<a class="item-dropdown" href="{$ALL_LINK}">{$DISPLAY_ALL}</a>
 							<div id="awaslokas">

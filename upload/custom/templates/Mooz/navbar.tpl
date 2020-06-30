@@ -5,7 +5,7 @@
               {if isset($item.items)}
                   {if ($name == "alerts") || ($name == "pms")}  
                       <li class="nav-item dropdown">
-                          <div class="nav-link nada" id="button-{$name}" data-variation="mini" data-toggle="popup">{$item.icon}</div>
+                          <div class="nav-link nada hicons" id="button-{$name}" data-variation="mini" data-toggle="popup">{$item.icon}</div>
                           <div class="ui popup">
                             <a class="item-dropdown">{$item.title}</a>
                             <div id="list-{$name}">
@@ -16,7 +16,7 @@
                       </li>
             {elseif ($name == "account")}
                     <li class="nav-item  ml-auto">
-                      <div class="nav-link" id="button-{$name}" data-variation="mini" data-toggle="popup"><i class="fa fa-user"></i> {$LOGGED_IN_USER.username}</div>
+                      <div class="nav-link hicons" id="button-{$name}" data-variation="mini" data-toggle="popup"><i class="fa fa-user"></i> {$LOGGED_IN_USER.username}</div>
                       <div class="ui popup">
                         <a class="item-dropdown">{$item.title}</a>
                         <div id="awaslokas">
@@ -34,15 +34,15 @@
       {else}
         {if ($name == "panel")}
                   <li class="nav-item">
-                      <a class="nav-link" href="{$item.link}" style="color: inherit" target="{$item.target}">{$item.icon}</a>
+                      <a class="nav-link hicons" href="{$item.link}" style="color: inherit" target="{$item.target}">{$item.icon}</a>
                   </li>
         {elseif ($name == "register")}
                   <li class="nav-item">
-                      <a class="nav-link" style="color: inherit" href="{$item.link}" target="{$item.target}">{$item.icon} {$item.title}</a>
+                      <a class="nav-link hicons" style="color: inherit" href="{$item.link}" target="{$item.target}">{$item.icon} {$item.title}</a>
                   </li>
         {else}
                   <li class="nav-item ml-auto">
-                      <a class="nav-link" style="color: inherit" href="{$item.link}" target="{$item.target}">{$item.icon} {$item.title}</a>
+                      <a class="nav-link hicons" style="color: inherit" href="{$item.link}" target="{$item.target}">{$item.icon} {$item.title}</a>
                   </li>
         {/if}
       {/if}

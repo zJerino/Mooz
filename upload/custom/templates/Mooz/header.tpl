@@ -64,7 +64,9 @@
         });
         </script>
         
-    </head>
+    {$ParticlesCSS}
+</head>
 
     <body id="page-{if is_numeric($smarty.const.PAGE)}{$TITLE}{else}{$smarty.const.PAGE}{/if}" class="{if isset($GLOBAL_WARNING_TITLE)}modal-open{/if}" data-scrollbar>
         <main id="wrapper">
+{$PARTICLESJsD}
