@@ -1,7 +1,7 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
 
-<div class="container">
+<div class="container" style="margin-bottom:30px;">
 	<div class="card">
 		<div class="card-body pb-0">
 			<div class="row">
