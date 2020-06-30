@@ -1,10 +1,23 @@
 {include file='header.tpl'}
 {include file='navbar.tpl'}
-
-
 <div class="container">
   {if empty($RESULTS)}
-  ¯\_(ツ)_/¯ 
+<div class="container">
+    <div class="card card-news">
+        <div class="card-header">
+            <span class="card-title">
+                {$SEARCH_RESULTS}
+            </span>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <span style="display:block;">{$NO_RESULTS_FOUND}</span> 
+                <br>
+                <a class="btn btn-danger" href="/">{$CANCEL}</a>
+         </div>     
+                </div>
+            </div>
+        </div>
   {else}
   {foreach from=$RESULTS item=result}
   <div class="card card-news">
