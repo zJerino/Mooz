@@ -14,10 +14,12 @@
             <div class="alert alert-info">
                 {$AUTHME_INFO}
             </div>
-            
-            <h3>
-                {$CONNECT_WITH_AUTHME}
-            </h3>
+<div class="card card-news">           
+    <div class="card-header">
+	    <span class="card-title">
+					{$CONNECT_WITH_AUTHME}
+		</span>
+			</div>
             <div class="card card-news">
                 <div class="card-body">
                     <div class="container">
@@ -61,7 +63,6 @@
         </div>
     </div>
 </div>
-
 {*
 <div class="container">
   <div class="card card-news">
