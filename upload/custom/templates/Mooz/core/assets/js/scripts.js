@@ -1,5 +1,7 @@
+
 function fixFooter(){
-    var o="calc(100vh - "+($("footer").outerHeight()+"px")+")";$("#wrapper").css({"min-height":o})}$(document).ready(fixFooter),$(window).resize(fixFooter),
+    var o="calc(100vh - "+($(".footer").outerHeight()+"px")+")";$("#wrapper").css({"min-height":o})}
+    $(document).ready(fixFooter),$(window).resize(fixFooter),
 $('[data-toggle="popup"]').popup({inline:!0,hoverable:!0,position:"bottom left",
     transition: 'slide down',delay:{show:300,hide:800}}),
 $('[data-toggle="popup2"]').popup({

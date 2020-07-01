@@ -5,6 +5,9 @@
     <div class="row">
       <div class="col-3">
         <div class="card card-news">
+            <div class="card-header">
+                <div class="card-title">{$LANG_Ranks}</div>
+            </div>
             <div class="card-body">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     {if count($STAFF_GROUPS)}
@@ -30,15 +33,17 @@
                                             {$group.name}
                                         </div>
                                     </div>
-                                    <div class="card-body row row-cols-3">
-                                        {foreach from=$group.members item=member}
-                                            <div class="col-md-3 mb-3">
-                                                <div class="text-center">
-                                                   <img class="lazy" data-src="{$member.avatar}" data-srcset="{$member.avatar}" alt="{$member.username}" style="display: block; margin: 0 auto .5rem; width: 60px; height: 60px; border-radius: 50%;">
-                                                    <a href="{$member.profile}" style="color: {$group.style};">{$member.username}</a>
+                                    <div class="card-body">
+                                        <div class="row row-cols-3">
+                                            {foreach from=$group.members item=member}
+                                                <div class="col-md-3 mb-3">
+                                                    <div class="text-center">
+                                                    <img class="lazy" data-src="{$member.avatar}" data-srcset="{$member.avatar}" alt="{$member.username}" style="display: block; margin: 0 auto .5rem; width: 60px; height: 60px; border-radius: 50%;">
+                                                        <a href="{$member.profile}" style="color: {$group.style};">{$member.username}</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        {/foreach}
+                                            {/foreach}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

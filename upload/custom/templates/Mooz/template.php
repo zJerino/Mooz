@@ -144,7 +144,13 @@ if (empty($MZC['GENERAL'])) {
 }
 
 
-$GLOBALS['Mooz_General'] = $Mooz_General;
+$MZ_IDIOMA = new Language(ROOT_PATH . '/custom/templates/Mooz/core/language', LANGUAGE);
+$smarty->assign(array(
+    'LANG_Rank' => $MZ_IDIOMA->get('general', 'Rango'),
+    'LANG_Ranks' => $MZ_IDIOMA->get('general', 'Rangos'),
+));
+
+$GLOBALS['Mooz_General'] = $MZC['GENERAL'];
 
 class Mooz_Template extends TemplateBase {
     private $_language, $_user, $_pages, $_template, $_cache, $_smarty;
@@ -173,7 +179,7 @@ class Mooz_Template extends TemplateBase {
             $template['assets'] . 'css/styles.php' => array(),
         ));
         $this->_settings = ROOT_PATH . '/custom/templates/Mooz/core/panel/index.php';
-
+        
         if ($Mooz_General['WEB_FUE'] == '1') {
             $this->addCSSFiles(array(
                 $template['assets'] . 'css/failsafe.css' => array('async' => "yes"),
@@ -259,9 +265,13 @@ class Mooz_Template extends TemplateBase {
         $this->_smarty->assign(array(
             'SITE_URL_SET' => $route,
         ));
-        //Java Script Variables
+        
+        $MZ_IDIOMA = new Language(ROOT_PATH . '/custom/templates/Mooz/core/language', LANGUAGE);
+
         $JSVariables = array(
             'siteName' => SITE_NAME,
+            'CONEXION_OFF' => $MZ_IDIOMA->get('general', 'CONEXION_OFF'),
+            'CONEXION_ON' => $MZ_IDIOMA->get('general', 'CONEXION_ON'),
             'Mantenimiento' => $this->_language->get('admin', 'maintenance_enabled'),
             'siteURL' => URL::build('/'),
             'fullSiteUrl' => Util::getSelfURL() . ltrim(URL::build('/'), '/'),

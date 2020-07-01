@@ -22,3 +22,7 @@ strong.LB-COPY>svg {
     WIDTH: 2.6rem !IMPORTANT;
     HEIGHT: 0.6rem !important;
 }
+
+#particles-js canvas.particles-js-canvas-el {
+    z-index: -1;
+}
