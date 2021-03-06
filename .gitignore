@@ -1,3 +1,3 @@
-
-Mooz-Template.zip
-upload/custom/templates/Mooz/core/settings/styless.json
+.sass-cache/
+*.sass.map
+*.scss.map
